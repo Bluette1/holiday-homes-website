@@ -13,7 +13,9 @@ jest.mock('axios');
 
 afterEach(cleanup);
 
-const store = configureStore();
+const store = configureStore({
+  user: { username: 'MaryS', authentication_token: 'token' },
+});
 
 const AppWithStore = () => (
   <Provider store={store}>
@@ -28,7 +30,7 @@ test('renders the app', async () => {
       case `${httpProtocol}://${host}:${port}/categories`:
         return Promise.resolve({ data: { categories: [] } });
       default:
-        return Promise.resolve({ data: { holiday_homes: [] } });
+        return Promise.resolve({ data: [] });
     }
   });
   render(<AppWithStore />);
