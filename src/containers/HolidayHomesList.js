@@ -26,11 +26,13 @@ const HolidayHomesList = ({
     if (key === undefined) {
       queryPart = '';
     }
-    axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?${queryPart}`,
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-      .then(response => {
-        registerHolidayHomes(response.data);
-      });
+    if (holidayHomes.length === 0) {
+      axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?${queryPart}`,
+        { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+        .then(response => {
+          registerHolidayHomes(response.data);
+        });
+    }
     return () => clearTimeout(timer);
   }, []);
 
