@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -106,7 +107,7 @@ class HolidayHomeForm extends React.Component {
             >
               <option>Category</option>
               {categories.map(option => (
-                <option key={`key-${option}`} value={option}>
+                <option key={`${uuid()}-key-${option}`} value={option}>
                   {option}
                 </option>
               ))}
@@ -118,7 +119,6 @@ class HolidayHomeForm extends React.Component {
               className="submit"
             >
               ADD HOLIDAY HOME
-              {/* <span className="add-holiday-form">ADD HOLIDAY HOME</span> */}
             </button>
           </form>
         </div>
