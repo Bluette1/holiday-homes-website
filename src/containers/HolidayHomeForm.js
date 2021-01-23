@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'react-uuid';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ class HolidayHomeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '', category: '', address: '', email: '', phone: '',
+      title: '', category: '', address: '', email: '', phone: '', resRedirect: false,
     };
   }
 
@@ -19,6 +20,13 @@ class HolidayHomeForm extends React.Component {
         [name]: value,
       });
     }
+
+    handleRedirect = e => {
+      e.preventDefault();
+      this.setState({
+        resRedirect: true,
+      });
+    };
 
     handleSubmit = e => {
       e.preventDefault();
@@ -45,12 +53,12 @@ class HolidayHomeForm extends React.Component {
     render() {
       const {
         state: {
-          address, email, phone, category, title,
+          address, email, phone, category, title, resRedirect,
         },
       } = this;
 
       const { props: { categories } } = this;
-      return (
+      return resRedirect ? <Redirect to="/" /> : (
         <div>
           <h3 className="form-title">ADD NEW HOLIDAY HOME</h3>
 
@@ -121,6 +129,14 @@ class HolidayHomeForm extends React.Component {
               ADD HOLIDAY HOME
             </button>
           </form>
+
+          <button
+            type="submit"
+            className="submit"
+            onClick={this.handleRedirect}
+          >
+            BACK
+          </button>
         </div>
       );
     }

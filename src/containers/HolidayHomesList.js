@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import axios from 'axios';
@@ -43,7 +44,7 @@ const HolidayHomesList = ({
   const result = (
     <div>
       {holidayHomes && holidayHomes.length ? (
-        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${holidayHome.id}`} holidayHome={holidayHome} hideFromList={hideThisHolidayHome} removeHolidayHome={removeThisHolidayHome} />)
+        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} hideFromList={hideThisHolidayHome} removeHolidayHome={removeThisHolidayHome} />)
       ) : (
         <div>
           <p className="no-holiday-homes">
