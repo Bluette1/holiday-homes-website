@@ -8,9 +8,7 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <Routes />
-    </React.StrictMode>
+    <Routes />
   </Provider>,
   document.getElementById('root'),
 );

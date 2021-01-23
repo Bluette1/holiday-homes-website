@@ -4,6 +4,7 @@ import holidayHomes from './holidayHomes';
 import filter from './filter';
 import user from './user';
 import favorites from './favourites';
+import categories from './categories';
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
@@ -11,5 +12,6 @@ const createRootReducer = history => combineReducers({
   filter,
   user,
   favorites,
+  categories,
 });
 export default createRootReducer;

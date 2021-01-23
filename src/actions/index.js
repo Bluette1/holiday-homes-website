@@ -3,10 +3,10 @@ import {
   CREATE_HOLIDAY_HOME,
   UPDATE_HOLIDAY_HOME,
   CHANGE_FILTER, REGISTER_FAVOURITES, REGISTER_HOLIDAY_HOMES,
-  LOGIN, LOGOUT, REMOVE_FROM_FAVOURITES, ADD_TO_FAVOURITES, HIDE_FROM_LIST,
+  LOGIN, LOGOUT, REMOVE_FROM_FAVOURITES, ADD_TO_FAVOURITES, HIDE_FROM_LIST, REGISTER_CATEGORIES,
 } from './actionTypes';
 
-export const createholidayHome = holidayHome => ({
+export const createHolidayHome = holidayHome => ({
   type: CREATE_HOLIDAY_HOME,
   holidayHome,
 });
@@ -43,6 +43,11 @@ export const registerFavourites = holidayHomes => ({
 export const registerHolidayHomes = holidayHomes => ({
   type: REGISTER_HOLIDAY_HOMES,
   holidayHomes,
+});
+
+export const registerCategories = categories => ({
+  type: REGISTER_CATEGORIES,
+  categories,
 });
 
 export const login = user => ({
