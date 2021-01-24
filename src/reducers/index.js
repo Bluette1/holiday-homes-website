@@ -3,7 +3,7 @@ import { connectRouter } from 'connected-react-router';
 import holidayHomes from './holidayHomes';
 import filter from './filter';
 import user from './user';
-import favorites from './favourites';
+import favourites from './favourites';
 import categories from './categories';
 
 const createRootReducer = history => combineReducers({
@@ -11,7 +11,7 @@ const createRootReducer = history => combineReducers({
   holidayHomes,
   filter,
   user,
-  favorites,
+  favourites,
   categories,
 });
 export default createRootReducer;

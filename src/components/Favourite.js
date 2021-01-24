@@ -6,42 +6,32 @@ import axios from 'axios';
 import '../css/HolidayHome.css';
 import cx from 'classnames';
 import { httpProtocol, host, port } from '../envVariables';
-import { removeFromFavourites, addToFavorites } from '../actions';
+import { removeFromFavourites } from '../actions';
 
-const HolidayHome = ({
-  holidayHome, hideFromList, user, favouriteId, removeFromFavourites, addToFavorites,
-}) => {
+const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
+  const holidayHome = favourite.holiday_home;
+  const { id } = favourite;
   const [resRedirect, setRedirect] = useState(false);
+
   const {
-    title, owner, manager, address, id, description, email,
+    title, owner, manager, address, description, email,
     phone, category, price, rating,
   } = holidayHome;
 
   const detailsUrl = () => `/details?img=${holidayHome.image_url}&t=${title}
-  &d=${description}&e=${email}&p=${phone}&o=${owner}&m=${manager}&i=${id}`;
+  &d=${description}&e=${email}&p=${phone}&o=${owner}&m=${manager}&i=${holidayHome.id}`;
 
   const handleSubmitDetails = e => {
     e.preventDefault();
     setRedirect(true);
   };
 
-  const handleAddToFavourites = e => {
-    e.preventDefault();
-    axios.post(`${httpProtocol}://${host}:${port}/holiday_homes/${id}/favourites`, {},
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-      .then(response => {
-        const savedFavourite = response.data;
-        savedFavourite.holiday_home = holidayHome;
-        addToFavorites(savedFavourite);
-      });
-  };
-
   const handleRemoveFromFavourites = e => {
     e.preventDefault();
-    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${favouriteId}`,
+    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${id}`,
       { headers: { Authorization: `Bearer ${user.authentication_token}` } })
       .then(() => {
-        removeFromFavourites(favouriteId);
+        removeFromFavourites(favourite.id);
       });
   };
   return resRedirect ? <Redirect to={detailsUrl()} /> : (
@@ -73,30 +63,19 @@ const HolidayHome = ({
       </div>
       <div className="right">
         <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
-        <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
-          {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
+        <button type="button" onClick={handleRemoveFromFavourites} className="favourites">
+          Remove from favourites
         </button>
-        {hideFromList ? (
-          <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
-        ) : null}
       </div>
+
     </div>
   );
 };
 
 HolidayHome.propTypes = {
-  holidayHome: PropTypes.objectOf(PropTypes.any).isRequired,
-  favouriteId: PropTypes.number,
-  hideFromList: PropTypes.func.isRequired,
+  favourite: PropTypes.objectOf(PropTypes.any).isRequired,
   removeFromFavourites: PropTypes.func.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-HolidayHome.defaultProps = {
-  favouriteId: null,
-};
-
-export default connect(
-  state => ({ user: state.user }), { removeFromFavourites, addToFavorites },
-)(HolidayHome);
+export default connect(state => ({ user: state.user }), { removeFromFavourites })(HolidayHome);

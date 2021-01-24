@@ -11,6 +11,7 @@ const user = (state = initialState, action) => {
     case LOGOUT: {
       return null;
     }
+
     default: {
       return state;
     }

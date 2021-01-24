@@ -10,7 +10,9 @@ import Button from 'react-bootstrap/Button';
 import CategoryFilter from './CategoryFilter';
 import { logout } from '../actions/index';
 
-const Header = ({ logout, user, history }) => {
+const Header = ({
+  logout, user, history, showFavourites,
+}) => {
   const redirect = (e, route) => {
     e.preventDefault();
     history.push(route);
@@ -28,7 +30,7 @@ const Header = ({ logout, user, history }) => {
           <NavDropdown title={user.username} id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={e => { redirect(e, '/new_holiday_home'); }}>Add a holiday home</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.4">Favourites</NavDropdown.Item>
+            <NavDropdown.Item onClick={showFavourites}>Favourites</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
           </NavDropdown>
@@ -43,6 +45,7 @@ const Header = ({ logout, user, history }) => {
 };
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
+  showFavourites: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };

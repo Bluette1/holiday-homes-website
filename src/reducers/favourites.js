@@ -7,21 +7,20 @@ const initialState = [];
 
 const findAndDeleteFavorite = (favorites, id) => favorites.filter(favorite => favorite.id !== id);
 
-export default function books(state = initialState, action) {
+export default function favourites(state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAVOURITES: {
       return [
-        ..._.cloneDeep(state), ...action.holidayHome,
+        ..._.cloneDeep(state), ...action.holidayHomes,
       ];
     }
     case ADD_TO_FAVOURITES: {
       return [
-        ..._.cloneDeep(state), action.holidayHome,
+        ..._.cloneDeep(state), action.favourite,
       ];
     }
     case REMOVE_FROM_FAVOURITES: {
-      const { id } = action.holidayHome;
-      return findAndDeleteFavorite([..._.cloneDeep(state)], id);
+      return findAndDeleteFavorite([..._.cloneDeep(state)], action.id);
     }
 
     default:

@@ -1,26 +1,15 @@
 import _ from 'lodash';
+
 import {
   REMOVE_HOLIDAY_HOME, CREATE_HOLIDAY_HOME, REGISTER_HOLIDAY_HOMES,
   UPDATE_HOLIDAY_HOME, HIDE_FROM_LIST,
 } from '../actions/actionTypes';
 
+import {
+  findAndDeleteHolidayHome, findAndUpdateHolidayHome, setProperty,
+} from '../selectors/index';
+
 const initialState = [];
-
-const findAndDeleteHolidayHome = (holidayHomes, id) => holidayHomes.filter(
-  holidayHome => holidayHome.id !== id,
-);
-
-const findAndUpdateHolidayHome = (holidayHomes, holidayHome) => {
-  const index = holidayHomes.findIndex(hme => holidayHome.id === hme.id);
-  return [...holidayHomes.slice(0, index), holidayHome, ...holidayHomes.slice(index + 1)];
-};
-
-const setProperty = (holidayHomes, id, key) => {
-  const index = holidayHomes.findIndex(holidayHome => holidayHome.id === id);
-  const holidayHome = holidayHomes[index];
-  holidayHome[key] = key;
-  return [...holidayHomes.slice(0, index), holidayHome, ...holidayHomes.slice(index + 1)];
-};
 
 export default function holidayHomes(state = initialState, action) {
   switch (action.type) {

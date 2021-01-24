@@ -1,3 +1,7 @@
 h4 {
   font-size: inherit;
 }
+
+.hidden {
+  visibility: hidden;
+}
