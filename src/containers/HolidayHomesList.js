@@ -15,7 +15,7 @@ import { httpProtocol, host, port } from '../envVariables';
 
 const HolidayHomesList = ({
   holidayHomes, registerHolidayHomes, hideFromList, location: { search }, user,
-  registerFavourites, favourites,
+  registerFavourites, favourites, showDetails,
 }) => {
   const [renderRes, setRenderRes] = useState(false);
   useEffect(() => {
@@ -60,7 +60,7 @@ const HolidayHomesList = ({
   const result = (
     <div>
       {holidayHomes && holidayHomes.length ? (
-        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} hideFromList={hideThisHolidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} />)
+        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} hideFromList={hideThisHolidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
       ) : (
         <div>
           <p className="no-holiday-homes">
@@ -89,6 +89,7 @@ HolidayHomesList.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.object).isRequired,
   registerHolidayHomes: PropTypes.func.isRequired,
   registerFavourites: PropTypes.func.isRequired,
+  showDetails: PropTypes.func.isRequired,
   hideFromList: PropTypes.func.isRequired,
   location: PropTypes.objectOf(PropTypes.string).isRequired,
 };

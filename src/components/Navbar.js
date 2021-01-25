@@ -11,33 +11,49 @@ import CategoryFilter from './CategoryFilter';
 import { logout } from '../actions/index';
 
 const Header = ({
-  logout, user, history, showFavourites,
+  logout, user, history, showFavourites, showNewHolidayHome, showDetails,
 }) => {
-  const redirect = (e, route) => {
+  const home = e => {
     e.preventDefault();
-    if (showFavourites) {
-      showFavourites(false);
-    }
-    history.push(route);
+
+    showFavourites(false);
+    showNewHolidayHome(false);
+    showDetails(false);
+    history.push('/');
   };
+
+  const favourites = e => {
+    e.preventDefault();
+    showNewHolidayHome(false);
+    showFavourites();
+    showDetails(false);
+    history.push('/');
+  };
+
+  const newHolidayHomeForm = e => {
+    e.preventDefault();
+
+    showFavourites(false);
+    showDetails(false);
+    showNewHolidayHome();
+  };
+
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand onClick={e => { redirect(e, '/'); }}>Holiday-Homes</Navbar.Brand>
+      <Navbar.Brand onClick={home}>Holiday-Homes</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link onClick={e => { redirect(e, '/'); }}>Home</Nav.Link>
+          <Nav.Link onClick={home}>Home</Nav.Link>
           <Nav.Link>
             <CategoryFilter />
           </Nav.Link>
           <NavDropdown title={user.username} id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-            <NavDropdown.Item onClick={e => { redirect(e, '/new_holiday_home'); }}>Add a holiday home</NavDropdown.Item>
-            {showFavourites ? (
-              <NavDropdown.Item onClick={showFavourites}>
-                Favourites
-              </NavDropdown.Item>
-            ) : null}
+            <NavDropdown.Item onClick={newHolidayHomeForm}>Add a holiday home</NavDropdown.Item>
+            <NavDropdown.Item onClick={favourites}>
+              Favourites
+            </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
           </NavDropdown>
@@ -52,12 +68,11 @@ const Header = ({
 };
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
-  showFavourites: PropTypes.func,
+  showFavourites: PropTypes.func.isRequired,
+  showNewHolidayHome: PropTypes.func.isRequired,
+  showDetails: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-Header.defaultProps = {
-  showFavourites: null,
 };
 
 export default withRouter(connect(state => ({ user: state.user }), { logout })(Header));

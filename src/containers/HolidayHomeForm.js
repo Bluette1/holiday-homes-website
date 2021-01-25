@@ -22,10 +22,13 @@ class HolidayHomeForm extends React.Component {
     }
 
     handleRedirect = e => {
+      const { showFavourites, showNewHolidayHome } = this.props;
       e.preventDefault();
       this.setState({
         resRedirect: true,
       });
+      showFavourites(false);
+      showNewHolidayHome(false);
     };
 
     handleSubmit = e => {
@@ -43,7 +46,6 @@ class HolidayHomeForm extends React.Component {
           createHolidayHome(response.data);
         });
 
-      // resets the component's state
       this.setState({
         title: '', category: '', address: '', email: '', phone: '',
       });
@@ -146,6 +148,8 @@ HolidayHomeForm.propTypes = {
   createHolidayHome: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showFavourites: PropTypes.func.isRequired,
+  showNewHolidayHome: PropTypes.func.isRequired,
 };
 export default connect(
   state => ({ user: state.user, categories: state.categories }), { createHolidayHome },

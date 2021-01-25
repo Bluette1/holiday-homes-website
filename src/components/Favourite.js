@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../css/HolidayHome.css';
 import cx from 'classnames';
+import Details from './HolidayHomeDetails';
 import { httpProtocol, host, port } from '../envVariables';
 import { removeFromFavourites } from '../actions';
 
@@ -14,12 +14,9 @@ const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
   const [resRedirect, setRedirect] = useState(false);
 
   const {
-    title, owner, manager, address, description, email,
-    phone, category, price, rating,
+    title, address,
+    category, price, rating,
   } = holidayHome;
-
-  const detailsUrl = () => `/details?img=${holidayHome.image_url}&t=${title}
-  &d=${description}&e=${email}&p=${phone}&o=${owner}&m=${manager}&i=${holidayHome.id}`;
 
   const handleSubmitDetails = e => {
     e.preventDefault();
@@ -34,7 +31,7 @@ const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
         removeFromFavourites(favourite.id);
       });
   };
-  return resRedirect ? <Redirect to={detailsUrl()} /> : (
+  return resRedirect ? <Details holidayHome={holidayHome} favouriteId={id} /> : (
     <div
       className={cx(
         'holidayHome-row',
