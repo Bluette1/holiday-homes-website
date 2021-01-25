@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../css/HolidayHome.css';
 import cx from 'classnames';
-import Details from './HolidayHomeDetails';
 import { httpProtocol, host, port } from '../envVariables';
 import { removeFromFavourites } from '../actions';
 
-const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
+const HolidayHome = ({
+  favourite, user, removeFromFavourites, showDetails,
+}) => {
   const holidayHome = favourite.holiday_home;
   const { id } = favourite;
-  const [resRedirect, setRedirect] = useState(false);
 
   const {
     title, address,
@@ -20,7 +20,7 @@ const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
 
   const handleSubmitDetails = e => {
     e.preventDefault();
-    setRedirect(true);
+    showDetails(true, holidayHome, id);
   };
 
   const handleRemoveFromFavourites = e => {
@@ -31,7 +31,7 @@ const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
         removeFromFavourites(favourite.id);
       });
   };
-  return resRedirect ? <Details holidayHome={holidayHome} favouriteId={id} /> : (
+  return (
     <div
       className={cx(
         'holidayHome-row',
@@ -72,6 +72,7 @@ const HolidayHome = ({ favourite, user, removeFromFavourites }) => {
 HolidayHome.propTypes = {
   favourite: PropTypes.objectOf(PropTypes.any).isRequired,
   removeFromFavourites: PropTypes.func.isRequired,
+  showDetails: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 

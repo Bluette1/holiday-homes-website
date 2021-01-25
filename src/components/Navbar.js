@@ -25,9 +25,8 @@ const Header = ({
   const favourites = e => {
     e.preventDefault();
     showNewHolidayHome(false);
-    showFavourites();
     showDetails(false);
-    history.push('/');
+    showFavourites();
   };
 
   const newHolidayHomeForm = e => {

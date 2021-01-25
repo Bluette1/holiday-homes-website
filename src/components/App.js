@@ -24,6 +24,7 @@ const App = ({ user }) => {
   const showDetails = (value = true, holidayHome, favouriteId) => {
     setHolidayHome(holidayHome);
     setFavouriteId(favouriteId);
+    setRenderFavourites(false);
     setRenderDetails(value);
   };
 
@@ -42,7 +43,7 @@ const App = ({ user }) => {
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
         />
-        <FavouritesList showFavourites={showFavourites} />
+        <FavouritesList showFavourites={showFavourites} showDetails={showDetails} />
       </div>
     );
   }
