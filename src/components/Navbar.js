@@ -15,6 +15,9 @@ const Header = ({
 }) => {
   const redirect = (e, route) => {
     e.preventDefault();
+    if (showFavourites) {
+      showFavourites(false);
+    }
     history.push(route);
   };
   return (
@@ -30,7 +33,11 @@ const Header = ({
           <NavDropdown title={user.username} id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={e => { redirect(e, '/new_holiday_home'); }}>Add a holiday home</NavDropdown.Item>
-            <NavDropdown.Item onClick={showFavourites}>Favourites</NavDropdown.Item>
+            {showFavourites ? (
+              <NavDropdown.Item onClick={showFavourites}>
+                Favourites
+              </NavDropdown.Item>
+            ) : null}
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
           </NavDropdown>
@@ -45,9 +52,12 @@ const Header = ({
 };
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
-  showFavourites: PropTypes.func.isRequired,
+  showFavourites: PropTypes.func,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+Header.defaultProps = {
+  showFavourites: null,
 };
 
 export default withRouter(connect(state => ({ user: state.user }), { logout })(Header));

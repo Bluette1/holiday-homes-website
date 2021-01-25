@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
 import Favourite from '../components/Favourite';
+import { filteredFavourites } from '../selectors/index';
 import '../css/FavouritesList.css';
 
 const FavouritesList = ({
@@ -31,8 +32,8 @@ FavouritesList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { favourites, user } = state;
-  return { favourites, user };
+  const { favourites, user, filter } = state;
+  return { favourites: filteredFavourites(favourites, filter), user };
 };
 
 export default connect(

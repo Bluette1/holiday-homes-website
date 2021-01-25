@@ -10,15 +10,19 @@ import '../css/App.css';
 
 const App = ({ user }) => {
   const [renderFavourites, setRenderFavourites] = useState(false);
-  const showFavourites = () => {
-    setRenderFavourites(true);
+  const showFavourites = (value = true) => {
+    setRenderFavourites(value);
   };
-  const list = renderFavourites ? <FavouritesList /> : (
-    <div className="m-auto">
+  const list = (
+    <div>
       <Navbar showFavourites={showFavourites} />
-      <HolidayHomesList showFavourites={showFavourites} />
+      {renderFavourites
+        ? <FavouritesList /> : (
+          <HolidayHomesList showFavourites={showFavourites} />
+        )}
     </div>
   );
+
   return (
     <div className="content">
       {user ? list : <Redirect to="/login" />}

@@ -1,5 +1,7 @@
 export const filteredHolidayHomes = (holidayHomes, filter) => (filter !== 'All' && filter !== 'CATEGORIES' ? (holidayHomes.filter(holidayHome => holidayHome.category === filter)) : holidayHomes);
 
+export const filteredFavourites = (favourites, filter) => (filter !== 'All' && filter !== 'CATEGORIES' ? (favourites.filter(favourite => favourite.holiday_home.category === filter)) : favourites);
+
 export const findAndDeleteHolidayHome = (holidayHomes, id) => holidayHomes.filter(
   holidayHome => holidayHome.id !== id,
 );
