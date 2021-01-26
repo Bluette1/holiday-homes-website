@@ -5,6 +5,7 @@ import '../css/HolidayHome.css';
 import axios from 'axios';
 import { httpProtocol, host, port } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
+import RatingComponent from './RatingComponent';
 
 const HolidayHome = ({
   holidayHome, hideFromList, favouriteId, showDetails, user,
@@ -52,7 +53,6 @@ const HolidayHome = ({
         <p className="category">{category}</p>
         <p className="price">{price}</p>
         <h4 className="title">{title}</h4>
-        <p className="rating">{rating}</p>
         <p className="address">{address}</p>
       </div>
       <div>
@@ -65,7 +65,7 @@ const HolidayHome = ({
             backgroundSize: 'cover',
           }}
         >
-          {' '}
+          <RatingComponent className="rating" rating={rating} />
         </div>
       </div>
       <div className="right">

@@ -6,6 +6,7 @@ import axios from 'axios';
 import '../css/HolidayHomeDetails.css';
 import { httpProtocol, host, port } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
+import RatingComponent from './RatingComponent';
 
 const HolidayHomeDetails = ({
   user, holidayHome, favouriteId, removeFromFavourites, addToFavorites, showDetails,
@@ -43,7 +44,7 @@ const HolidayHomeDetails = ({
   };
 
   const {
-    title, category, email, phone, img, owner, manager, description,
+    title, category, email, phone, img, owner, manager, description, rating,
   } = holidayHome;
 
   return resRedirect ? <Redirect to="/" /> : (
@@ -61,6 +62,8 @@ const HolidayHomeDetails = ({
         />
       </div>
       <div className="holidayHome-row details-pg">
+        <RatingComponent className="rating" rating={rating} />
+
         <div className="title-category">
           <h4 className="title">{title}</h4>
           <h4 className="title">{category}</h4>
