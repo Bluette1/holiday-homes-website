@@ -7,13 +7,14 @@ import '../css/HolidayHomeDetails.css';
 import { httpProtocol, host, port } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
+// import holidayHomes from '../reducers/holidayHomes';
 
 const HolidayHomeDetails = ({
   user, holidayHome, favouriteId, removeFromFavourites, addToFavorites, showDetails,
 }) => {
   const [resRedirect, setRedirect] = useState(false);
   const [displayFavourite, setDisplayFavourite] = useState(favouriteId);
-
+  console.log('holidayHome.image_url', holidayHome.image_url);
   const handleAddToFavourites = e => {
     e.preventDefault();
     const { id } = holidayHome;
@@ -44,7 +45,7 @@ const HolidayHomeDetails = ({
   };
 
   const {
-    title, category, email, phone, img, owner, manager, description, rating,
+    title, category, email, phone, owner, manager, description, rating,
   } = holidayHome;
 
   return resRedirect ? <Redirect to="/" /> : (
@@ -54,7 +55,7 @@ const HolidayHomeDetails = ({
         <div
           className="image-area details-pg"
           style={{
-            backgroundImage: `url(${img})`,
+            backgroundImage: `url(${holidayHome.image_url})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0% 0%',
             backgroundSize: 'cover',

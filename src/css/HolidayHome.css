@@ -5,3 +5,6 @@ h4 {
 .hidden {
   visibility: hidden;
 }
+.checked {
+  color: #ffa500;
+}
