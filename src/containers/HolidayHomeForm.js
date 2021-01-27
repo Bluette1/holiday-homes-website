@@ -21,6 +21,7 @@ class HolidayHomeForm extends React.Component {
       resRedirect: false,
       rating: 0,
       price: 0,
+      imageUrl: '',
       image: null,
       imageSelected: false,
     };
@@ -54,13 +55,25 @@ class HolidayHomeForm extends React.Component {
       e.preventDefault();
       const {
         state: {
-          title, category, address, email, phone, rating, price, image,
+          title, category, address, email, phone, rating, price, image, imageUrl,
         },
       } = this;
+
+      const formData = new FormData();
+
+      formData.append('image_url', imageUrl);
+      formData.append('title', title);
+      formData.append('category', category);
+      formData.append('address', address);
+      formData.append('email', email);
+      formData.append('phone', phone);
+      formData.append('rating', rating);
+      formData.append('price', price);
+      formData.append('image', image);
+
+      console.log('Image:::', image);
       const { props: { user, createHolidayHome } } = this;
-      axios.post(`${httpProtocol}://${host}:${port}/holiday_homes`, {
-        title, category, address, email, phone, rating, price, image,
-      }, { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+      axios.post(`${httpProtocol}://${host}:${port}/holiday_homes`, formData, { headers: { Authorization: `Bearer ${user.authentication_token}` } })
         .then(response => {
           createHolidayHome(response.data);
         });
@@ -82,7 +95,7 @@ class HolidayHomeForm extends React.Component {
     render() {
       const {
         state: {
-          address, email, phone, category, title, image,
+          address, email, phone, category, title, image, imageUrl,
           resRedirect, rating, price, imageSelected,
         },
       } = this;
@@ -176,6 +189,17 @@ class HolidayHomeForm extends React.Component {
               ))}
               ;
             </select>
+            <br />
+            <label htmlFor="imageUrl">
+              <input
+                className="input-image-url"
+                name="imageUrl"
+                onChange={this.handleChange}
+                value={imageUrl}
+                placeholder="Image url"
+              />
+            </label>
+            {' '}
             <br />
             <input type="file" name="image" onChange={this.handleChangeImage} />
             {' '}
