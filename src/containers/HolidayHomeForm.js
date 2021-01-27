@@ -71,7 +71,6 @@ class HolidayHomeForm extends React.Component {
       formData.append('price', price);
       formData.append('image', image);
 
-      console.log('Image:::', image);
       const { props: { user, createHolidayHome } } = this;
       axios.post(`${httpProtocol}://${host}:${port}/holiday_homes`, formData, { headers: { Authorization: `Bearer ${user.authentication_token}` } })
         .then(response => {

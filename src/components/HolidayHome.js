@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import '../css/HolidayHome.css';
 import axios from 'axios';
-import { httpProtocol, host, port } from '../envVariables';
+import {
+  httpProtocol, host, port, cloudName,
+} from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
 
@@ -42,24 +44,16 @@ const HolidayHome = ({
       });
   };
 
+  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
+  const url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
+
   return (
-    <div
-      className={cx(
-        'holidayHome-row',
-        holidayHome.hide && 'hidden',
-      )}
-    >
-      <div className="title-category">
-        <p className="category">{category}</p>
-        <p className="price">{price}</p>
-        <h4 className="title">{title}</h4>
-        <p className="address">{address}</p>
-      </div>
-      <div>
+    <div className="d-flex justify-content-center">
+      <div className="col-12">
         <div
           className="image-area"
           style={{
-            backgroundImage: `url(${holidayHome.image_url})`,
+            backgroundImage: `url(${url})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '50% 50%',
             backgroundSize: 'cover',
@@ -67,16 +61,32 @@ const HolidayHome = ({
         >
           <RatingComponent className="rating" rating={rating} />
         </div>
-      </div>
-      <div className="right">
-        <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
+        <div
+          className={cx(
+            '',
+            holidayHome.hide && 'hidden',
+          )}
+        >
+          <div className="title-category">
+            <p className="category">{category}</p>
+            <p className="price">
+              $&nbsp;
+              {price}
+            </p>
+            <h4 className="title">{title}</h4>
+            <p className="address">{address}</p>
+          </div>
+          <div className="right">
+            <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
 
-        {hideFromList ? (
-          <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
-        ) : null}
-        <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
-          {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
-        </button>
+            {hideFromList ? (
+              <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
+            ) : null}
+            <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
+              {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

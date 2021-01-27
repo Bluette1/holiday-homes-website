@@ -4,20 +4,25 @@ import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../css/HolidayHomeDetails.css';
-import { httpProtocol, host, port } from '../envVariables';
+import {
+  httpProtocol, host, port, cloudName,
+} from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
-// import holidayHomes from '../reducers/holidayHomes';
 
 const HolidayHomeDetails = ({
   user, holidayHome, favouriteId, removeFromFavourites, addToFavorites, showDetails,
 }) => {
   const [resRedirect, setRedirect] = useState(false);
   const [displayFavourite, setDisplayFavourite] = useState(favouriteId);
-  console.log('holidayHome.image_url', holidayHome.image_url);
+  const {
+    title, email, phone, owner, manager, description, rating, id,
+  } = holidayHome;
+  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
+  const url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
+
   const handleAddToFavourites = e => {
     e.preventDefault();
-    const { id } = holidayHome;
     axios.post(`${httpProtocol}://${host}:${port}/holiday_homes/${id}/favourites`, {},
       { headers: { Authorization: `Bearer ${user.authentication_token}` } })
       .then(response => {
@@ -44,66 +49,50 @@ const HolidayHomeDetails = ({
     setRedirect(true);
   };
 
-  const {
-    title, category, email, phone, owner, manager, description, rating,
-  } = holidayHome;
-
   return resRedirect ? <Redirect to="/" /> : (
-    <div className="details-bg">
-      {' '}
-      <div className="image details-pg">
+    <div className="d-flex justify-content-center">
+      <div className="col-12">
+        {' '}
         <div
-          className="image-area details-pg"
+          className="image-area"
           style={{
-            backgroundImage: `url(${holidayHome.image_url})`,
+            backgroundImage: `url(${url})`,
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: '0% 0%',
+            backgroundPosition: '50% 50%',
             backgroundSize: 'cover',
           }}
-        />
-      </div>
-      <div className="holidayHome-row details-pg">
-        <RatingComponent className="rating" rating={rating} />
-
-        <div className="title-category">
-          <h4 className="title">{title}</h4>
-          <h4 className="title">{category}</h4>
-          <h4 className="owner">{owner}</h4>
-          <h4 className="manager">{manager}</h4>
+        >
+          <RatingComponent className="rating" rating={rating} />
         </div>
-        <div>
-          <h4>
-            Email:&nbsp;
-            {email}
-          </h4>
-          <h4>
-            Phone:&nbsp;
-            {phone}
-          </h4>
-        </div>
-      </div>
-      <div className="holidayHome-row d">
-        <div>
-          <div className="d-heading">
-            <h4 className="Description">Description:</h4>
+        <div className="mt-5">
+          <div className="title-category">
+            <h4 className="title">{title}</h4>
+            <p className="owner">{owner}</p>
+            <p className="manager">{manager}</p>
             <p>
-              Current Viewer:Phone:&nbsp;
-              {user.username}
+              Email:&nbsp;
+              {email}
             </p>
+            <p>
+              Phone:&nbsp;
+              {phone}
+            </p>
+            <p className="body-d">{description}</p>
           </div>
-          <p className="body-d">{description}</p>
+          <div className="mt-5">
+            <button
+              type="button"
+              className="submit"
+              onClick={handleRedirect}
+            >
+              BACK
+            </button>
+            <button type="button" onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
+              {displayFavourite ? 'Remove from favourites' : 'Add to favourites'}
+            </button>
+          </div>
         </div>
       </div>
-      <button
-        type="button"
-        className="submit"
-        onClick={handleRedirect}
-      >
-        BACK
-      </button>
-      <button type="button" onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
-        {displayFavourite ? 'Remove from favourites' : 'Add to favourites'}
-      </button>
     </div>
   );
 };

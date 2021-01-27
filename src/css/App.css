@@ -37,3 +37,18 @@
     transform: rotate(360deg);
   }
 }
+
+.holidayHome-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-area {
+  height: 400px;
+}
+
+@media (max-width: 576px) {
+  .image-area {
+    height: 330px;
+  }
+}
