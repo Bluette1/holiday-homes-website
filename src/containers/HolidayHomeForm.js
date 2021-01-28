@@ -42,12 +42,11 @@ class HolidayHomeForm extends React.Component {
     }
 
     handleRedirect = e => {
-      const { showFavourites, showNewHolidayHome } = this.props;
+      const { showNewHolidayHome } = this.props;
       e.preventDefault();
       this.setState({
         resRedirect: true,
       });
-      showFavourites(false);
       showNewHolidayHome(false);
     };
 
@@ -73,24 +72,30 @@ class HolidayHomeForm extends React.Component {
         formData.append('image', image);
       }
 
-      const { props: { user, createHolidayHome } } = this;
+      const { props: { user, createHolidayHome, showNewHolidayHome } } = this;
       axios.post(`${httpProtocol}://${host}:${port}/holiday_homes`, formData, { headers: { Authorization: `Bearer ${user.authentication_token}` } })
         .then(response => {
           createHolidayHome(response.data);
-        });
 
-      this.setState({
-        title: '',
-        category: '',
-        address: '',
-        email: '',
-        phone: '',
-        rating: 0,
-        price: 0,
-        image: null,
-        imageSelected: false,
-      });
-      document.getElementById('holiday-home-select').selectedIndex = 0;
+          this.setState({
+            title: '',
+            category: '',
+            address: '',
+            email: '',
+            phone: '',
+            rating: 0,
+            price: 0,
+            image: null,
+            imageSelected: false,
+          });
+          document.getElementById('holiday-home-select').selectedIndex = 0;
+
+          this.setState({
+            resRedirect: true,
+          });
+
+          showNewHolidayHome(false);
+        });
     };
 
     render() {
@@ -260,7 +265,7 @@ HolidayHomeForm.propTypes = {
   createHolidayHome: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  showFavourites: PropTypes.func.isRequired,
+  // showFavourites: PropTypes.func.isRequired,
   showNewHolidayHome: PropTypes.func.isRequired,
 };
 export default connect(
