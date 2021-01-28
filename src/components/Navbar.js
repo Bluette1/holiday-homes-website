@@ -11,7 +11,7 @@ import CategoryFilter from './CategoryFilter';
 import { logout } from '../actions/index';
 
 const Header = ({
-  logout, user, history, showFavourites, showNewHolidayHome, showDetails,
+  logout, user, history, showFavourites, showNewHolidayHome, showDetails, showUser,
 }) => {
   const home = e => {
     e.preventDefault();
@@ -37,6 +37,15 @@ const Header = ({
     showNewHolidayHome();
   };
 
+  const userPage = e => {
+    e.preventDefault();
+
+    showFavourites(false);
+    showDetails(false);
+    showNewHolidayHome(false);
+    showUser();
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand onClick={home}>Holiday-Homes</Navbar.Brand>
@@ -48,7 +57,7 @@ const Header = ({
             <CategoryFilter />
           </Nav.Link>
           <NavDropdown title={user.username} id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={userPage}>Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={newHolidayHomeForm}>Add a holiday home</NavDropdown.Item>
             <NavDropdown.Item onClick={favourites}>
               Favourites
@@ -70,6 +79,7 @@ Header.propTypes = {
   showFavourites: PropTypes.func.isRequired,
   showNewHolidayHome: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
+  showUser: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };

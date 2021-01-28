@@ -7,6 +7,7 @@ import FavouritesList from '../containers/FavouritesList';
 import HolidayHomeForm from '../containers/HolidayHomeForm';
 import Details from './HolidayHomeDetails';
 import Navbar from './Navbar';
+import User from './User';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/App.css';
 
@@ -16,6 +17,7 @@ const App = ({ user }) => {
   const [holidayHome, setHolidayHome] = useState(null);
   const [favouriteId, setFavouriteId] = useState(null);
   const [renderNewForm, setRenderNewForm] = useState(false);
+  const [renderUser, setRenderUser] = useState(false);
 
   const showFavourites = (value = true) => {
     setRenderFavourites(value);
@@ -25,11 +27,16 @@ const App = ({ user }) => {
     setHolidayHome(holidayHome);
     setFavouriteId(favouriteId);
     setRenderFavourites(false);
+    setRenderUser(false);
     setRenderDetails(value);
   };
 
   const showNewHolidayHome = (value = true) => {
     setRenderNewForm(value);
+  };
+
+  const showUser = (value = true) => {
+    setRenderUser(value);
   };
 
   if (!user) {
@@ -42,6 +49,7 @@ const App = ({ user }) => {
           showFavourites={showFavourites}
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
+          showUser={showUser}
         />
         <FavouritesList showFavourites={showFavourites} showDetails={showDetails} />
       </div>
@@ -55,6 +63,7 @@ const App = ({ user }) => {
           showFavourites={showFavourites}
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
+          showUser={showUser}
         />
         <Details holidayHome={holidayHome} favouriteId={favouriteId} showDetails={showDetails} />
       </div>
@@ -68,8 +77,23 @@ const App = ({ user }) => {
           showFavourites={showFavourites}
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
+          showUser={showUser}
         />
         <HolidayHomeForm showFavourites={showFavourites} showNewHolidayHome={showNewHolidayHome} />
+      </div>
+    );
+  }
+
+  if (renderUser) {
+    return (
+      <div>
+        <Navbar
+          showFavourites={showFavourites}
+          showNewHolidayHome={showNewHolidayHome}
+          showDetails={showDetails}
+          showUser={showUser}
+        />
+        <User user={user} showUser={showUser} />
       </div>
     );
   }
@@ -80,6 +104,7 @@ const App = ({ user }) => {
         showFavourites={showFavourites}
         showNewHolidayHome={showNewHolidayHome}
         showDetails={showDetails}
+        showUser={showUser}
       />
       <HolidayHomesList showDetails={showDetails} />
     </div>
