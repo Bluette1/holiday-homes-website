@@ -16,7 +16,7 @@ export default function favourites(state = initialState, action) {
     }
     case ADD_TO_FAVOURITES: {
       return [
-        ..._.cloneDeep(state), action.favourite,
+        action.favourite, ..._.cloneDeep(state),
       ];
     }
     case REMOVE_FROM_FAVOURITES: {

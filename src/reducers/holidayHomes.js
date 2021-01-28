@@ -20,7 +20,7 @@ export default function holidayHomes(state = initialState, action) {
     }
     case CREATE_HOLIDAY_HOME: {
       return [
-        ..._.cloneDeep(state), action.holidayHome,
+        action.holidayHome, ..._.cloneDeep(state),
       ];
     }
     case REMOVE_HOLIDAY_HOME: {
