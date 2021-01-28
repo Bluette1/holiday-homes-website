@@ -30,43 +30,45 @@ const Login = ({ login }) => {
   };
 
   return loggedIn ? <Redirect to="/" /> : (
-    <div className="loginForm">
-      <h1>Login</h1>
-      <form className="form" onSubmit={handleLoginSubmit}>
-        <label htmlFor="email">
-          <input
-            placeholder="Email"
-            name="email"
-            className="email"
-            onChange={e => handleChange(e, setEmail)}
-            value={email}
-          />
-        </label>
-        <br />
+    <div className="d-flex justify-content-center">
+      <div className="loginForm p-5 m-5">
+        <h1>Login</h1>
+        <form className="form" onSubmit={handleLoginSubmit}>
+          <label htmlFor="email">
+            <input
+              placeholder="Email"
+              name="email"
+              className="email"
+              onChange={e => handleChange(e, setEmail)}
+              value={email}
+            />
+          </label>
+          <br />
 
-        <label htmlFor="password">
-          <input
-            placeholder="Password"
-            name="password"
-            className="password"
-            onChange={e => handleChange(e, setPassword)}
-            value={password}
-          />
-        </label>
-        {' '}
-        <br />
-        <button
-          type="submit"
-          className="submit"
-        >
-          Login
-        </button>
-      </form>
-      <a href="/signup">
-        <button type="submit" className="submit">
-          Signup
-        </button>
-      </a>
+          <label htmlFor="password">
+            <input
+              placeholder="Password"
+              name="password"
+              className="password"
+              onChange={e => handleChange(e, setPassword)}
+              value={password}
+            />
+          </label>
+          {' '}
+          <br />
+          <button
+            type="submit"
+            className="submit"
+          >
+            Login
+          </button>
+        </form>
+        <a href="/signup">
+          <button type="submit" className="submit mt-5 ">
+            Signup
+          </button>
+        </a>
+      </div>
     </div>
   );
 };

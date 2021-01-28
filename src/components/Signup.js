@@ -45,70 +45,73 @@ class Signup extends React.Component {
         },
       } = this;
       return loggedIn ? <Redirect to="/" /> : (
-        <div className="signupForm">
-          <h1>Signup</h1>
-          <form className="form" onSubmit={this.handleSignupSubmit}>
-            <label htmlFor="name">
-              <input
-                placeholder="Name"
-                name="name"
-                className="name"
-                onChange={this.handleChange}
-                value={name}
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="username">
-              <input
-                placeholder="UserName"
-                name="username"
-                className="username"
-                onChange={this.handleChange}
-                value={username}
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="email">
-              <input
-                placeholder="Email"
-                name="email"
-                className="email"
-                onChange={this.handleChange}
-                value={email}
-              />
-            </label>
-            <br />
+        <div className="d-flex justify-content-center">
+          <div className="signupForm p-5 m-5">
+            <h1>Signup</h1>
+            <form className="form" onSubmit={this.handleSignupSubmit}>
+              <label htmlFor="name">
+                <input
+                  placeholder="Name"
+                  name="name"
+                  className="name"
+                  onChange={this.handleChange}
+                  value={name}
+                />
+              </label>
+              {' '}
+              <br />
+              <label htmlFor="username">
+                <input
+                  placeholder="UserName"
+                  name="username"
+                  className="username"
+                  onChange={this.handleChange}
+                  value={username}
+                />
+              </label>
+              {' '}
+              <br />
+              <label htmlFor="email">
+                <input
+                  placeholder="Email"
+                  name="email"
+                  className="email"
+                  onChange={this.handleChange}
+                  value={email}
+                />
+              </label>
+              <br />
 
-            <label htmlFor="password">
-              <input
-                placeholder="Password"
-                name="password"
-                className="password"
-                onChange={this.handleChange}
-                value={password}
-              />
-            </label>
-            <br />
-            <label htmlFor="passwordConfirmation">
-              <input
-                placeholder="Confirm Password"
-                name="passwordConfirmation"
-                className="passwordConfirmation"
-                onChange={this.handleChange}
-                value={passwordConfirmation}
-              />
-            </label>
-            <br />
+              <label htmlFor="password">
+                <input
+                  placeholder="Password"
+                  name="password"
+                  className="password"
+                  onChange={this.handleChange}
+                  value={password}
+                />
+              </label>
+              <br />
+              <label htmlFor="passwordConfirmation">
+                <input
+                  placeholder="Confirm Password"
+                  name="passwordConfirmation"
+                  className="passwordConfirmation"
+                  onChange={this.handleChange}
+                  value={passwordConfirmation}
+                />
+              </label>
+              <br />
 
-            <button
-              type="submit"
-              className="submit"
-            >
-              Signup
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="submit mb-5"
+              >
+                Signup
+              </button>
+            </form>
+            <a href="/">Back</a>
+          </div>
         </div>
       );
     }
