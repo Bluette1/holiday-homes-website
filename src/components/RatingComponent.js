@@ -2,7 +2,7 @@ const RatingComponent = ({ rating }) => {
   switch (rating) {
     case 5: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
@@ -13,7 +13,7 @@ const RatingComponent = ({ rating }) => {
     }
     case 4: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
@@ -25,7 +25,7 @@ const RatingComponent = ({ rating }) => {
 
     case 3: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
@@ -37,7 +37,7 @@ const RatingComponent = ({ rating }) => {
 
     case 2: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star checked" />
           <span className="fa fa-star checked" />
           <span className="fa fa-star" />
@@ -48,7 +48,7 @@ const RatingComponent = ({ rating }) => {
     }
     case 1: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star checked" />
           <span className="fa fa-star" />
           <span className="fa fa-star" />
@@ -59,7 +59,7 @@ const RatingComponent = ({ rating }) => {
     }
     default: {
       return (
-        <div>
+        <div className="p-3">
           <span className="fa fa-star" />
           <span className="fa fa-star" />
           <span className="fa fa-star" />

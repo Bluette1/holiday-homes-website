@@ -61,30 +61,34 @@ const HolidayHome = ({
         >
           <RatingComponent className="rating" rating={rating} />
         </div>
-        <div
-          className={cx(
-            '',
-            holidayHome.hide && 'hidden',
-          )}
-        >
-          <div className="title-category">
-            <p className="category">{category}</p>
-            <p className="price">
-              $&nbsp;
-              {price}
-            </p>
-            <h4 className="title">{title}</h4>
-            <p className="address">{address}</p>
-          </div>
-          <div className="right">
-            <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
+        <div className="">
+          <div
+            className={cx(
+              'd-flex justify-content-md-between flex-md-row row mt-5 flex-col',
+              holidayHome.hide && 'hidden',
+            )}
+          >
+            <div className="title-category col-5">
+              <p className="category">{category}</p>
+              <p className="price">
+                $&nbsp;
+                {price}
+                &nbsp;
+                per Month
+              </p>
+              <h4 className="title">{title}</h4>
+              <p className="address">{address}</p>
+            </div>
+            <div className="col-md-7 ml-n3 ml-md-0 d-sm-block d-flex flex-column flex-end">
+              <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
 
-            {hideFromList ? (
-              <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
-            ) : null}
-            <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
-              {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
-            </button>
+              {hideFromList ? (
+                <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
+              ) : null}
+              <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
+                {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -6,14 +6,9 @@ import { filteredFavourites } from '../selectors/index';
 import '../css/FavouritesList.css';
 
 const FavouritesList = ({
-  favourites, user, showDetails,
+  favourites, showDetails,
 }) => (
   <div>
-    <h3>
-      {user.username}
-      : favourites
-      {' '}
-    </h3>
     {favourites && favourites.length ? (
       favourites.map(favourite => <Favourite key={`holidayHome-${uuid()}`} favourite={favourite} showDetails={showDetails} />)
     ) : (
@@ -27,7 +22,6 @@ const FavouritesList = ({
 );
 
 FavouritesList.propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
   favourites: PropTypes.arrayOf(PropTypes.object).isRequired,
   showDetails: PropTypes.func.isRequired,
 };
