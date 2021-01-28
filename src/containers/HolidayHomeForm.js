@@ -103,146 +103,154 @@ class HolidayHomeForm extends React.Component {
 
       const { props: { categories } } = this;
       return resRedirect ? <Redirect to="/" /> : (
-        <div>
-          <h3 className="form-title">ADD NEW HOLIDAY HOME</h3>
+        <div className="d-flex justify-content-center">
+          <div className="pt-5 mt-5">
+            <h4 className="form-title pb-4">ADD A NEW HOLIDAY HOME</h4>
 
-          <form className="holiday-home-form" onSubmit={this.handleSubmit}>
-            <label htmlFor="title">
-              <input
-                className="input-title"
-                onChange={this.handleChange}
-                name="title"
-                value={title}
-                placeholder="Holiday home title"
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="rating">
-              Holiday home rating out of 5
-              <input
-                className="input-rating"
-                onChange={this.handleChange}
-                name="rating"
-                value={rating}
-                placeholder=""
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="price">
-              Price per month in US Dollars
-              <input
-                className="input-price"
-                onChange={this.handleChange}
-                name="price"
-                value={price}
-                placeholder=""
-              />
-            </label>
-            <br />
-            <br />
-            <label htmlFor="address">
-              <input
-                className="input-address"
-                name="address"
-                onChange={this.handleChange}
-                value={address}
-                placeholder="Address"
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="email">
-              <input
-                className="input-email"
-                name="email"
-                onChange={this.handleChange}
-                value={email}
-                placeholder="Email"
-              />
-            </label>
-            {' '}
-            <br />
-            <label htmlFor="phone">
-              <input
-                className="input-phone"
-                name="phone"
-                onChange={this.handleChange}
-                value={phone}
-                placeholder="Phone"
-              />
-            </label>
-            {' '}
-            <br />
-            <select
-              className="choose-category"
-              name="category"
-              value={category}
-              id="holiday-home-select"
-              onChange={this.handleChange}
-            >
-              <option>Category</option>
-              {categories.map(option => (
-                <option key={`${uuid()}-key-${option}`} value={option}>
-                  {option}
-                </option>
-              ))}
-              ;
-            </select>
-            <br />
-            <label htmlFor="imageUrl">
-              <input
-                className="input-image-url"
-                name="imageUrl"
-                onChange={this.handleChange}
-                value={imageUrl}
-                placeholder="Image url"
-              />
-            </label>
-            {' '}
-            <br />
-            <input type="file" name="image" onChange={this.handleChangeImage} />
-            {' '}
-            {imageSelected ? (
-              <span>
-                <p>
-                  Filename:
-                  {image.name}
-                </p>
-                <p>
-                  Filetype:
-                  {image.type}
-                </p>
-                <p>
-                  Size in bytes:
-                  {image.size}
-                </p>
-                <p>
-                  lastModifiedDate:
+            <div className="d-flex justify-content-center">
+              <form className="holiday-home-form" onSubmit={this.handleSubmit}>
+                <label htmlFor="title">
+                  <input
+                    className="input-title"
+                    onChange={this.handleChange}
+                    name="title"
+                    value={title}
+                    placeholder="Holiday home title"
+                  />
+                </label>
+                {' '}
+                <br />
+                <label htmlFor="rating">
+                  Holiday home rating out of 5
                   {' '}
-                  {image.lastModifiedDate.toLocaleDateString()}
-                </p>
-              </span>
-            ) : (
-              <p>Select a file to show details</p>
-            )}
-            <br />
+                  <br />
+                  <input
+                    className="input-rating"
+                    onChange={this.handleChange}
+                    name="rating"
+                    value={rating}
+                    placeholder=""
+                  />
+                </label>
+                {' '}
+                <br />
+                <label htmlFor="price">
+                  Price per month in US Dollars
+                  {' '}
+                  <br />
+                  <input
+                    className="input-price"
+                    onChange={this.handleChange}
+                    name="price"
+                    value={price}
+                    placeholder=""
+                  />
+                </label>
+                <br />
+                <br />
+                <label htmlFor="address">
+                  <input
+                    className="input-address"
+                    name="address"
+                    onChange={this.handleChange}
+                    value={address}
+                    placeholder="Address"
+                  />
+                </label>
+                {' '}
+                <br />
+                <label htmlFor="email">
+                  <input
+                    className="input-email"
+                    name="email"
+                    onChange={this.handleChange}
+                    value={email}
+                    placeholder="Email"
+                  />
+                </label>
+                {' '}
+                <br />
+                <label htmlFor="phone">
+                  <input
+                    className="input-phone"
+                    name="phone"
+                    onChange={this.handleChange}
+                    value={phone}
+                    placeholder="Phone"
+                  />
+                </label>
+                {' '}
+                <br />
+                <select
+                  className="choose-category"
+                  name="category"
+                  value={category}
+                  id="holiday-home-select"
+                  onChange={this.handleChange}
+                >
+                  <option>Category</option>
+                  {categories.map(option => (
+                    <option key={`${uuid()}-key-${option}`} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                  ;
+                </select>
+                <br />
+                <label htmlFor="imageUrl">
+                  <input
+                    className="input-image-url"
+                    name="imageUrl"
+                    onChange={this.handleChange}
+                    value={imageUrl}
+                    placeholder="Image url"
+                  />
+                </label>
+                {' '}
+                <br />
+                <input type="file" name="image" onChange={this.handleChangeImage} />
+                {' '}
+                {imageSelected ? (
+                  <span>
+                    <p>
+                      Filename:
+                      {image.name}
+                    </p>
+                    <p>
+                      Filetype:
+                      {image.type}
+                    </p>
+                    <p>
+                      Size in bytes:
+                      {image.size}
+                    </p>
+                    <p>
+                      lastModifiedDate:
+                      {' '}
+                      {image.lastModifiedDate.toLocaleDateString()}
+                    </p>
+                  </span>
+                ) : (
+                  <p>Select a file to show details</p>
+                )}
+                <br />
+                <button
+                  type="submit"
+                  className="submit"
+                >
+                  ADD HOLIDAY HOME
+                </button>
+              </form>
+            </div>
+
             <button
               type="submit"
-              className="submit"
+              className="submit mt-5 ml-2"
+              onClick={this.handleRedirect}
             >
-              ADD HOLIDAY HOME
+              BACK
             </button>
-          </form>
-
-          <button
-            type="submit"
-            className="submit"
-            onClick={this.handleRedirect}
-          >
-            BACK
-          </button>
+          </div>
         </div>
       );
     }
