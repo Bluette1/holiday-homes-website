@@ -55,7 +55,9 @@ const HolidayHome = ({
   }
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className={cx('d-flex justify-content-center',
+      holidayHome.hide && 'hidden')}
+    >
       <div className="col-12">
         <div
           className="image-area"
@@ -70,10 +72,7 @@ const HolidayHome = ({
         </div>
         <div className="">
           <div
-            className={cx(
-              'd-flex justify-content-md-between flex-md-row row mt-5 flex-col',
-              holidayHome.hide && 'hidden',
-            )}
+            className="d-flex justify-content-md-between flex-md-row row mt-5 flex-col"
           >
             <div className="title-category col-5">
               <p className="category">{category}</p>
