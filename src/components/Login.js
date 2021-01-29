@@ -16,6 +16,15 @@ const Login = ({ login }) => {
     setData(value);
   };
 
+  const toggleFn = () => {
+    const psswdInput = document.getElementById('passwordInput');
+    if (psswdInput.type === 'password') {
+      psswdInput.type = 'text';
+    } else {
+      psswdInput.type = 'password';
+    }
+  };
+
   const handleLoginSubmit = e => {
     e.preventDefault();
     axios.post(`${httpProtocol}://${host}:${port}/api/sign_in`, {
@@ -48,6 +57,8 @@ const Login = ({ login }) => {
           <label htmlFor="password">
             <input
               placeholder="Password"
+              id="passwordInput"
+              type="password"
               name="password"
               className="password"
               onChange={e => handleChange(e, setPassword)}
@@ -55,6 +66,11 @@ const Login = ({ login }) => {
             />
           </label>
           {' '}
+          <br />
+          <label htmlFor="show-password">
+            Show Password
+            <input type="checkbox" onClick={toggleFn} />
+          </label>
           <br />
           <button
             type="submit"

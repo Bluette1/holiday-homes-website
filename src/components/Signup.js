@@ -44,6 +44,14 @@ class Signup extends React.Component {
           name, username, email, password, passwordConfirmation, loggedIn,
         },
       } = this;
+      const toggleFn = (e, id) => {
+        const psswdInput = document.getElementById(id);
+        if (psswdInput.type === 'password') {
+          psswdInput.type = 'text';
+        } else {
+          psswdInput.type = 'password';
+        }
+      };
       return loggedIn ? <Redirect to="/" /> : (
         <div className="d-flex justify-content-center">
           <div className="signupForm p-5 m-5">
@@ -87,19 +95,33 @@ class Signup extends React.Component {
                   placeholder="Password"
                   name="password"
                   className="password"
+                  type="password"
+                  id="password"
                   onChange={this.handleChange}
                   value={password}
                 />
               </label>
               <br />
+              <label htmlFor="showPassword">
+                Show Password
+                <input type="checkbox" onClick={e => toggleFn(e, 'password')} />
+              </label>
+              <br />
               <label htmlFor="passwordConfirmation">
                 <input
                   placeholder="Confirm Password"
+                  type="password"
+                  id="passwordConfirmation"
                   name="passwordConfirmation"
                   className="passwordConfirmation"
                   onChange={this.handleChange}
                   value={passwordConfirmation}
                 />
+              </label>
+              <br />
+              <label htmlFor="showPasswordConfirmation">
+                Show Password
+                <input type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
               </label>
               <br />
 
