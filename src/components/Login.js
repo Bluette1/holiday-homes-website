@@ -11,6 +11,7 @@ const Login = ({ login }) => {
   const [email, setEmail] = useStateIfMounted('');
   const [password, setPassword] = useStateIfMounted('');
   const [loggedIn, setLoggedin] = useStateIfMounted(false);
+  const [err, setErr] = useStateIfMounted(false);
 
   const handleChange = ({ target: { value } }, setData) => {
     setData(value);
@@ -35,12 +36,14 @@ const Login = ({ login }) => {
     }).then(response => {
       login(response.data.data.user);
       setLoggedin(true);
+    }).catch(() => {
+      setErr(true);
     });
   };
-
-  return loggedIn ? <Redirect to="/" /> : (
+  const loginDisplay = (
     <div className="d-flex justify-content-center">
       <div className="loginForm p-5 m-5">
+        {err ? <p className="text-danger">Wrong email or password</p> : null }
         <h1>Login</h1>
         <form className="form" onSubmit={handleLoginSubmit}>
           <label htmlFor="email">
@@ -87,6 +90,8 @@ const Login = ({ login }) => {
       </div>
     </div>
   );
+
+  return loggedIn ? <Redirect to="/" /> : loginDisplay;
 };
 
 Login.propTypes = {
