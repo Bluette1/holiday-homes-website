@@ -10,7 +10,7 @@ import { logout } from '../actions/index';
 
 const Header = ({
   logout, user, history, showFavourites,
-  showNewHolidayHome, showDetails, showUser, showSearchResults,
+  showNewHolidayHome, showDetails, showUser, showSearchResults, showForm,
 }) => {
   const [searchValue, setSearchValue] = useStateIfMounted('');
 
@@ -45,6 +45,7 @@ const Header = ({
     showDetails(false);
     showUser(false);
     showSearchResults(false, '');
+
     showNewHolidayHome();
   };
 
@@ -66,7 +67,6 @@ const Header = ({
     showDetails(false);
     showUser(false);
     showSearchResults(true, searchValue);
-    setSearchValue('');
   };
 
   return (
@@ -89,10 +89,14 @@ const Header = ({
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <form onSubmit={search}>
-          <input type="text" placeholder="Search by holiday home title" className="mr-sm-2" onChange={handleChange} />
-          <button type="submit">Search</button>
-        </form>
+        {showForm
+          ? (
+            <form onSubmit={search}>
+              <input type="text" placeholder="Search by holiday home title" className="mr-sm-2" onChange={handleChange} />
+              <button type="submit">Search</button>
+            </form>
+          )
+          : null}
       </Navbar.Collapse>
     </Navbar>
   );
@@ -103,9 +107,14 @@ Header.propTypes = {
   showNewHolidayHome: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
   showUser: PropTypes.func.isRequired,
+  showForm: PropTypes.bool,
   showSearchResults: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+Header.defaultProps = {
+  showForm: true,
 };
 
 export default withRouter(connect(

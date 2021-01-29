@@ -25,10 +25,6 @@ const App = ({ user }) => {
     setRenderFavourites(value);
   };
 
-  const showSearchResults = (show = true, params = '') => {
-    setRenderResults({ show, params });
-  };
-
   const showDetails = (value = true, holidayHome, favouriteId) => {
     setHolidayHome(holidayHome);
     setFavouriteId(favouriteId);
@@ -39,6 +35,10 @@ const App = ({ user }) => {
 
   const showNewHolidayHome = (value = true) => {
     setRenderNewForm(value);
+  };
+
+  const showSearchResults = (show = true, params = '') => {
+    setRenderResults({ show, params });
   };
 
   const showUser = (value = true) => {
@@ -117,6 +117,7 @@ const App = ({ user }) => {
           showDetails={showDetails}
           showUser={showUser}
           showSearchResults={showSearchResults}
+          showForm={false}
         />
         <SearchResultsList
           params={renderSearchResults.params}
