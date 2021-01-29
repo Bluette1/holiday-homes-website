@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import { useStateIfMounted } from 'use-state-if-mounted';
 import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,7 +8,7 @@ import CategoryFilter from './CategoryFilter';
 import { logout } from '../actions/index';
 
 const Header = ({
-  logout, user, history, showFavourites,
+  logout, user, showFavourites,
   showNewHolidayHome, showDetails, showUser, showSearchResults, showForm,
 }) => {
   const [searchValue, setSearchValue] = useStateIfMounted('');
@@ -25,8 +24,6 @@ const Header = ({
     showDetails(false);
     showUser(false);
     showSearchResults(false, '');
-
-    history.push('/');
   };
 
   const favourites = e => {
@@ -110,13 +107,12 @@ Header.propTypes = {
   showForm: PropTypes.bool,
   showSearchResults: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 Header.defaultProps = {
   showForm: true,
 };
 
-export default withRouter(connect(
+export default connect(
   state => ({ user: state.user }), { logout },
-)(Header));
+)(Header);
