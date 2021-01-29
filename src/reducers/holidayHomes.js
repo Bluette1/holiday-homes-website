@@ -15,7 +15,7 @@ export default function holidayHomes(state = initialState, action) {
   switch (action.type) {
     case REGISTER_HOLIDAY_HOMES: {
       return [
-        ..._.cloneDeep(state), ...action.holidayHomes,
+        ...action.holidayHomes,
       ];
     }
     case CREATE_HOLIDAY_HOME: {

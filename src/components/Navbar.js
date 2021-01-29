@@ -1,24 +1,31 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { useStateIfMounted } from 'use-state-if-mounted';
 import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import CategoryFilter from './CategoryFilter';
 import { logout } from '../actions/index';
 
 const Header = ({
-  logout, user, history, showFavourites, showNewHolidayHome, showDetails, showUser,
+  logout, user, history, showFavourites,
+  showNewHolidayHome, showDetails, showUser, showSearchResults,
 }) => {
+  const [searchValue, setSearchValue] = useStateIfMounted('');
+
+  const handleChange = ({ target: { value } }) => {
+    setSearchValue(value);
+  };
   const home = e => {
     e.preventDefault();
 
     showFavourites(false);
     showNewHolidayHome(false);
     showDetails(false);
+    showUser(false);
+    showSearchResults(false, '');
+
     history.push('/');
   };
 
@@ -26,6 +33,8 @@ const Header = ({
     e.preventDefault();
     showNewHolidayHome(false);
     showDetails(false);
+    showUser(false);
+    showSearchResults(false, '');
     showFavourites();
   };
 
@@ -34,6 +43,8 @@ const Header = ({
 
     showFavourites(false);
     showDetails(false);
+    showUser(false);
+    showSearchResults(false, '');
     showNewHolidayHome();
   };
 
@@ -43,7 +54,19 @@ const Header = ({
     showFavourites(false);
     showDetails(false);
     showNewHolidayHome(false);
+    showSearchResults(false, '');
     showUser();
+  };
+
+  const search = e => {
+    e.preventDefault();
+
+    showFavourites(false);
+    showNewHolidayHome(false);
+    showDetails(false);
+    showUser(false);
+    showSearchResults(true, searchValue);
+    setSearchValue('');
   };
 
   return (
@@ -66,10 +89,10 @@ const Header = ({
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
+        <form onSubmit={search}>
+          <input type="text" placeholder="Search by holiday home title" className="mr-sm-2" onChange={handleChange} />
+          <button type="submit">Search</button>
+        </form>
       </Navbar.Collapse>
     </Navbar>
   );
@@ -80,8 +103,11 @@ Header.propTypes = {
   showNewHolidayHome: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
   showUser: PropTypes.func.isRequired,
+  showSearchResults: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default withRouter(connect(state => ({ user: state.user }), { logout })(Header));
+export default withRouter(connect(
+  state => ({ user: state.user }), { logout },
+)(Header));

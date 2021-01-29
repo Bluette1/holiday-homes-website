@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HolidayHomesList from '../containers/HolidayHomesList';
 import FavouritesList from '../containers/FavouritesList';
+import SearchResultsList from '../containers/SearchResultsList';
 import HolidayHomeForm from '../containers/HolidayHomeForm';
 import Details from './HolidayHomeDetails';
 import Navbar from './Navbar';
@@ -18,9 +19,14 @@ const App = ({ user }) => {
   const [favouriteId, setFavouriteId] = useState(null);
   const [renderNewForm, setRenderNewForm] = useState(false);
   const [renderUser, setRenderUser] = useState(false);
+  const [renderSearchResults, setRenderResults] = useState({ show: false, params: '' });
 
   const showFavourites = (value = true) => {
     setRenderFavourites(value);
+  };
+
+  const showSearchResults = (show = true, params = '') => {
+    setRenderResults({ show, params });
   };
 
   const showDetails = (value = true, holidayHome, favouriteId) => {
@@ -50,6 +56,7 @@ const App = ({ user }) => {
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
           showUser={showUser}
+          showSearchResults={showSearchResults}
         />
         <FavouritesList showFavourites={showFavourites} showDetails={showDetails} />
       </div>
@@ -64,6 +71,7 @@ const App = ({ user }) => {
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
           showUser={showUser}
+          showSearchResults={showSearchResults}
         />
         <Details holidayHome={holidayHome} favouriteId={favouriteId} showDetails={showDetails} />
       </div>
@@ -78,6 +86,7 @@ const App = ({ user }) => {
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
           showUser={showUser}
+          showSearchResults={showSearchResults}
         />
         <HolidayHomeForm showFavourites={showFavourites} showNewHolidayHome={showNewHolidayHome} />
       </div>
@@ -92,8 +101,28 @@ const App = ({ user }) => {
           showNewHolidayHome={showNewHolidayHome}
           showDetails={showDetails}
           showUser={showUser}
+          showSearchResults={showSearchResults}
         />
         <User user={user} showUser={showUser} />
+      </div>
+    );
+  }
+
+  if (renderSearchResults.show) {
+    return (
+      <div>
+        <Navbar
+          showFavourites={showFavourites}
+          showNewHolidayHome={showNewHolidayHome}
+          showDetails={showDetails}
+          showUser={showUser}
+          showSearchResults={showSearchResults}
+        />
+        <SearchResultsList
+          params={renderSearchResults.params}
+          showSearchResults={showSearchResults}
+          showDetails={showDetails}
+        />
       </div>
     );
   }
@@ -105,6 +134,7 @@ const App = ({ user }) => {
         showNewHolidayHome={showNewHolidayHome}
         showDetails={showDetails}
         showUser={showUser}
+        showSearchResults={showSearchResults}
       />
       <HolidayHomesList showDetails={showDetails} />
     </div>

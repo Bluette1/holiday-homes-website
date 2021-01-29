@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import axios from 'axios';
-import QueryString from 'query-string';
 import HolidayHome from '../components/HolidayHome';
 import { filteredHolidayHomes, favourite } from '../selectors';
 import {
@@ -14,8 +12,8 @@ import '../css/HolidayHomesList.css';
 import { httpProtocol, host, port } from '../envVariables';
 
 const HolidayHomesList = ({
-  holidayHomes, registerHolidayHomes, hideFromList, location: { search }, user,
-  registerFavourites, favourites, showDetails,
+  holidayHomes, registerHolidayHomes, hideFromList, user,
+  registerFavourites, favourites, showDetails, params,
 }) => {
   const [renderRes, setRenderRes] = useState(false);
   useEffect(() => {
@@ -23,26 +21,20 @@ const HolidayHomesList = ({
       setRenderRes(true);
     }, 1500);
 
-    const parsedParams = QueryString.parse(search);
-    const { key } = parsedParams;
-    let queryPart = `key=${key}`;
-    if (key === undefined) {
-      queryPart = '';
-    }
-    if (holidayHomes.length === 0) {
-      axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?${queryPart}`,
-        { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-        .then(response => {
-          registerHolidayHomes(response.data.reverse());
-          if (favourites.length === 0) {
-            axios.get(`${httpProtocol}://${host}:${port}/favourites`,
-              { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-              .then(responseFavourites => {
-                registerFavourites(responseFavourites.data.reverse());
-              });
-          }
-        });
-    }
+    // if (holidayHomes.length === 0 || params !== '') {
+    axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?search_params=${params}`,
+      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+      .then(response => {
+        registerHolidayHomes(response.data.reverse());
+        if (favourites.length === 0) {
+          axios.get(`${httpProtocol}://${host}:${port}/favourites`,
+            { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+            .then(responseFavourites => {
+              registerFavourites(responseFavourites.data.reverse());
+            });
+        }
+      });
+    // }
     return () => clearTimeout(timer);
   }, []);
 
@@ -80,7 +72,11 @@ const mapStateToProps = state => {
   const {
     filter, holidayHomes, user, favourites,
   } = state;
-  return { holidayHomes: filteredHolidayHomes(holidayHomes, filter), user, favourites };
+  return {
+    holidayHomes: filteredHolidayHomes(holidayHomes, filter),
+    user,
+    favourites,
+  };
 };
 
 HolidayHomesList.propTypes = {
@@ -91,12 +87,19 @@ HolidayHomesList.propTypes = {
   registerFavourites: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
   hideFromList: PropTypes.func.isRequired,
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  params: PropTypes.string,
 };
 
-export default withRouter(connect(
+HolidayHomesList.defaultProps = {
+  params: '',
+};
+
+export default connect(
   mapStateToProps,
   {
-    registerHolidayHomes, removeHolidayHome, hideFromList, registerFavourites,
+    registerHolidayHomes,
+    removeHolidayHome,
+    hideFromList,
+    registerFavourites,
   },
-)(HolidayHomesList));
+)(HolidayHomesList);
