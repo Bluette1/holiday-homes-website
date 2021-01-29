@@ -23,7 +23,14 @@ const HolidayHome = ({
 
   const holidayHomeId = holidayHome.id;
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
-  const url = `${baseImgUrl}${holidayHomeId}/original/${holidayHome.image_file_name}`;
+  let url;
+  if (holidayHome.image_file_name) {
+    url = `${baseImgUrl}${holidayHomeId}/original/${holidayHome.image_file_name}`;
+  } else if (holidayHome.image_url !== '') {
+    url = holidayHome.image_url;
+  } else {
+    url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
+  }
 
   const handleSubmitDetails = e => {
     e.preventDefault();
