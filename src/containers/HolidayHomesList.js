@@ -6,13 +6,13 @@ import axios from 'axios';
 import HolidayHome from '../components/HolidayHome';
 import { filteredHolidayHomes, favourite } from '../selectors';
 import {
-  registerHolidayHomes, removeHolidayHome, hideFromList, registerFavourites,
+  registerHolidayHomes, removeHolidayHome, registerFavourites,
 } from '../actions/index';
 import '../css/HolidayHomesList.css';
 import { httpProtocol, host, port } from '../envVariables';
 
 const HolidayHomesList = ({
-  holidayHomes, registerHolidayHomes, hideFromList, user,
+  holidayHomes, registerHolidayHomes, user,
   registerFavourites, favourites, showDetails, params,
 }) => {
   const [renderRes, setRenderRes] = useState(false);
@@ -44,15 +44,10 @@ const HolidayHomesList = ({
 
   const isAFavourite = id => favourite(favourites, id);
 
-  const hideThisHolidayHome = (e, id) => {
-    e.preventDefault();
-    hideFromList(id);
-  };
-
   const result = (
     <div>
       {holidayHomes && holidayHomes.length ? (
-        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} hideFromList={hideThisHolidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
+        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
       ) : (
         <div>
           <p className="no-holiday-homes">
@@ -86,7 +81,6 @@ HolidayHomesList.propTypes = {
   registerHolidayHomes: PropTypes.func.isRequired,
   registerFavourites: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
-  hideFromList: PropTypes.func.isRequired,
   params: PropTypes.string,
 };
 
@@ -99,7 +93,6 @@ export default connect(
   {
     registerHolidayHomes,
     removeHolidayHome,
-    hideFromList,
     registerFavourites,
   },
 )(HolidayHomesList);

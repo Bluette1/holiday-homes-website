@@ -3,8 +3,7 @@ import {
   CREATE_HOLIDAY_HOME,
   UPDATE_HOLIDAY_HOME,
   CHANGE_FILTER, REGISTER_FAVOURITES, REGISTER_HOLIDAY_HOMES,
-  LOGIN, LOGOUT, REMOVE_FROM_FAVOURITES, ADD_TO_FAVOURITES,
-  HIDE_FROM_LIST, REGISTER_CATEGORIES,
+  LOGIN, LOGOUT, REMOVE_FROM_FAVOURITES, ADD_TO_FAVOURITES, REGISTER_CATEGORIES,
 } from './actionTypes';
 
 export const createHolidayHome = holidayHome => ({
@@ -22,10 +21,6 @@ export const removeHolidayHome = holidayHome => ({
   holidayHome,
 });
 
-export const hideFromList = id => ({
-  type: HIDE_FROM_LIST,
-  id,
-});
 export const updateHolidayHome = holidayHome => ({
   type: UPDATE_HOLIDAY_HOME,
   holidayHome,

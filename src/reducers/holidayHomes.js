@@ -2,11 +2,11 @@ import _ from 'lodash';
 
 import {
   REMOVE_HOLIDAY_HOME, CREATE_HOLIDAY_HOME, REGISTER_HOLIDAY_HOMES,
-  UPDATE_HOLIDAY_HOME, HIDE_FROM_LIST,
+  UPDATE_HOLIDAY_HOME,
 } from '../actions/actionTypes';
 
 import {
-  findAndDeleteHolidayHome, findAndUpdateHolidayHome, setProperty,
+  findAndDeleteHolidayHome, findAndUpdateHolidayHome,
 } from '../selectors/index';
 
 const initialState = [];
@@ -28,11 +28,6 @@ export default function holidayHomes(state = initialState, action) {
       return findAndDeleteHolidayHome([..._.cloneDeep(state)], id);
     }
 
-    case HIDE_FROM_LIST: {
-      const { id } = action;
-      const holidayHomes = [..._.cloneDeep(state)];
-      return setProperty(holidayHomes, id, 'hide');
-    }
     case UPDATE_HOLIDAY_HOME: {
       const { holidayHome } = action;
       return findAndUpdateHolidayHome([..._.cloneDeep(state)], holidayHome);
