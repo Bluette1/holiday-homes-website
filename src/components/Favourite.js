@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../css/HolidayHome.css';
-import cx from 'classnames';
 import {
   httpProtocol, host, port, cloudName,
 } from '../envVariables';
 import { removeFromFavourites } from '../actions';
 import RatingComponent from './RatingComponent';
 
-const HolidayHome = ({
+const Favourite = ({
   favourite, user, removeFromFavourites, showDetails,
 }) => {
+  const [resRedirect, setRedirect] = useState(false);
   const holidayHome = favourite.holiday_home;
   const { id } = favourite;
 
   const {
-    title, address,
+    title,
     category, price, rating,
   } = holidayHome;
 
@@ -31,6 +34,12 @@ const HolidayHome = ({
   } else {
     url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
   }
+
+  const handleRedirect = e => {
+    e.preventDefault();
+    showDetails(false);
+    setRedirect(true);
+  };
 
   const handleSubmitDetails = e => {
     e.preventDefault();
@@ -46,54 +55,51 @@ const HolidayHome = ({
       });
   };
 
-  return (
+  return (resRedirect ? <Redirect to="/" /> : (
     <div className="d-flex justify-content-center">
       <div className="col-12">
-        <div
-          className="image-area"
-          style={{
-            backgroundImage: `url(${url})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: '50% 50%',
-            backgroundSize: 'cover',
-          }}
-        >
-          <RatingComponent className="rating" rating={rating} />
+        <div className="imgContainer">
+          <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
         </div>
-        <div
-          className={cx(
-            'd-flex justify-content-md-between flex-md-row row mt-5 flex-col',
-            holidayHome.hide && 'hidden',
-          )}
-        >
+        <div className="col-12 d-flex justify-content-between pt-3">
           <div className="title-category">
-            <p className="category">{category}</p>
-            <p className="price">
+            <h4 className="title">{title}</h4>
+            <RatingComponent rating={rating} />
+            <p className="category pt-3">{category}</p>
+          </div>
+          <div>
+            <h5 className="price">
               $&nbsp;
               {price}
               &nbsp;
-              per Month
-            </p>
-            <h4 className="title">{title}</h4>
-            <p className="address">{address}</p>
+              <br />
+              <small className="text-muted">per Month</small>
+            </h5>
           </div>
-          <div className="col-md-7 text-align-right ml-n3 ml-md-0 d-sm-block d-flex flex-column">
-            <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
-            <button type="button" onClick={handleRemoveFromFavourites} className="favourites">
+        </div>
+        <div className="dropdown-list col-12 d-flex justify-content-center pb-5 pt-3 mb-5 mt-2">
+
+          <DropdownButton id="dropdown-basic-button" title="More...">
+            <Dropdown.Item onClick={handleRemoveFromFavourites}>
               Remove from favourites
-            </button>
-          </div>
+            </Dropdown.Item>
+
+            <Dropdown.Item onClick={handleRedirect}>
+              BACK
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
       </div>
     </div>
+  )
   );
 };
 
-HolidayHome.propTypes = {
+Favourite.propTypes = {
   favourite: PropTypes.objectOf(PropTypes.any).isRequired,
   removeFromFavourites: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default connect(state => ({ user: state.user }), { removeFromFavourites })(HolidayHome);
+export default connect(state => ({ user: state.user }), { removeFromFavourites })(Favourite);

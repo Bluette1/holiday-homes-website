@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import '../css/HolidayHome.css';
 import {
   cloudName,
@@ -32,9 +31,7 @@ const HolidayHome = ({
   }
 
   return (
-    <div className={cx('d-flex justify-content-center',
-      holidayHome.hide && 'hidden')}
-    >
+    <div className="d-flex justify-content-center">
       <div className="col-12">
         <div className="imgContainer">
           <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />

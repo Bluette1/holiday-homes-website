@@ -1,11 +1,14 @@
 
-.holidayHome-row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .image-area {
   height: 560px;
+}
+
+.imgContainer :hover {
+  border: solid 4px #ecbc1c;
+}
+
+.imgContainer :focus {
+  border: solid 4px #d8f167;
 }
 
 @media (max-width: 576px) {
