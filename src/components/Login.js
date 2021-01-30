@@ -44,7 +44,10 @@ const Login = ({ login }) => {
     <div className="d-flex justify-content-center">
       <div className="loginForm p-5 m-5">
         {err ? <p className="text-danger">Wrong email or password</p> : null }
-        <h1>Login</h1>
+        <h1 className="pb-4">
+          Login&nbsp;&nbsp;
+          <sup className="h4 text-info"><small>Holiday Homes</small></sup>
+        </h1>
         <form className="form" onSubmit={handleLoginSubmit}>
           <label htmlFor="email">
             <input
@@ -72,18 +75,18 @@ const Login = ({ login }) => {
           <br />
           <label htmlFor="show-password">
             Show Password
-            <input type="checkbox" onClick={toggleFn} />
+            <input className="m-1" type="checkbox" onClick={toggleFn} />
           </label>
           <br />
           <button
             type="submit"
-            className="submit"
+            className="submit btn btn-primary"
           >
             Login
           </button>
         </form>
         <a href="/signup">
-          <button type="submit" className="submit mt-5 ">
+          <button type="submit" className="submit mt-5 btn btn-primary">
             Signup
           </button>
         </a>

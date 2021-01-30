@@ -89,12 +89,12 @@ const HolidayHomeDetails = ({
           <div className="mt-5">
             <button
               type="button"
-              className="submit"
+              className="submit btn btn-primary mr-1"
               onClick={handleRedirect}
             >
               BACK
             </button>
-            <button type="button" onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
+            <button type="button" onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites btn btn-primary">
               {displayFavourite ? 'Remove from favourites' : 'Add to favourites'}
             </button>
           </div>

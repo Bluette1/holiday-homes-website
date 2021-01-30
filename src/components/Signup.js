@@ -55,7 +55,10 @@ class Signup extends React.Component {
       return loggedIn ? <Redirect to="/" /> : (
         <div className="d-flex justify-content-center">
           <div className="signupForm p-5 m-5">
-            <h1>Signup</h1>
+            <h1 className="pb-4">
+              Signup&nbsp;&nbsp;
+              <sup className="h4 text-info"><small>Holiday Homes</small></sup>
+            </h1>
             <form className="form" onSubmit={this.handleSignupSubmit}>
               <label htmlFor="name">
                 <input
@@ -121,13 +124,13 @@ class Signup extends React.Component {
               <br />
               <label htmlFor="showPasswordConfirmation">
                 Show Password
-                <input type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
+                <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
               </label>
               <br />
 
               <button
                 type="submit"
-                className="submit mb-5"
+                className="submit mb-5 btn btn-primary"
               >
                 Signup
               </button>

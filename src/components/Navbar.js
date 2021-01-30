@@ -90,7 +90,7 @@ const Header = ({
           ? (
             <form onSubmit={search}>
               <input type="text" placeholder="Search by holiday home title" className="mr-sm-2" onChange={handleChange} />
-              <button type="submit">Search</button>
+              <button className="btn btn-primary" type="submit">Search</button>
             </form>
           )
           : null}

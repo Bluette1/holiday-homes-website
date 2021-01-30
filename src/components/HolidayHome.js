@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import '../css/HolidayHome.css';
@@ -85,16 +87,19 @@ const HolidayHome = ({
               <h4 className="title">{title}</h4>
               <p className="address">{address}</p>
             </div>
-            <div className="col-md-7 ml-n3 ml-md-0 d-sm-block d-flex flex-column flex-end">
-              <button type="button" onClick={handleSubmitDetails} className="details">View details</button>
-
+            <DropdownButton id="dropdown-basic-button" title="Actions">
+              <Dropdown.Item onClick={handleSubmitDetails}>View details</Dropdown.Item>
               {hideFromList ? (
-                <button type="button" onClick={e => hideFromList(e, id)} className="hide">Hide from list</button>
+                <Dropdown.Item className="hide" onClick={e => hideFromList(e, id)}>
+                  Hide from list
+                </Dropdown.Item>
               ) : null}
-              <button type="button" onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites">
+              <Dropdown.Item
+                onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites}
+              >
                 {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
-              </button>
-            </div>
+              </Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       </div>
