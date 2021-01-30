@@ -16,7 +16,7 @@ const HolidayHome = ({
   removeFromFavourites, addToFavorites,
 }) => {
   const {
-    title, address, id,
+    title, id,
     category, price, rating,
   } = holidayHome;
 
@@ -61,46 +61,50 @@ const HolidayHome = ({
       holidayHome.hide && 'hidden')}
     >
       <div className="col-12">
-        <div
-          className="image-area"
-          style={{
-            backgroundImage: `url(${url})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: '50% 50%',
-            backgroundSize: 'cover',
-          }}
-        >
-          <RatingComponent className="rating" rating={rating} />
-        </div>
-        <div className="">
+        <div>
           <div
-            className="d-flex justify-content-md-between flex-md-row row mt-5 flex-col"
+            className="image-area"
+            style={{
+              backgroundImage: `url(${url})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: '50% 50%',
+              backgroundSize: 'cover',
+            }}
           >
-            <div className="title-category col-5">
-              <p className="category">{category}</p>
-              <p className="price">
-                $&nbsp;
-                {price}
-                &nbsp;
-                per Month
-              </p>
-              <h4 className="title">{title}</h4>
-              <p className="address">{address}</p>
-            </div>
-            <DropdownButton id="dropdown-basic-button" title="Actions">
-              <Dropdown.Item onClick={handleSubmitDetails}>View details</Dropdown.Item>
-              {hideFromList ? (
-                <Dropdown.Item className="hide" onClick={e => hideFromList(e, id)}>
-                  Hide from list
-                </Dropdown.Item>
-              ) : null}
-              <Dropdown.Item
-                onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites}
-              >
-                {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
-              </Dropdown.Item>
-            </DropdownButton>
+            {' '}
           </div>
+        </div>
+        <div className="col-12 d-flex justify-content-between pt-3">
+          <div className="title-category">
+            <h4 className="title">{title}</h4>
+            <RatingComponent rating={rating} />
+            <p className="category pt-3">{category}</p>
+          </div>
+          <div>
+            <h5 className="price">
+              $&nbsp;
+              {price}
+              &nbsp;
+              <br />
+              <small className="text-muted">per Month</small>
+            </h5>
+          </div>
+        </div>
+        <div className="dropdown-list col-12 d-flex justify-content-center pb-5 pt-3 mb-5 mt-2">
+
+          <DropdownButton id="dropdown-basic-button" title="More...">
+            <Dropdown.Item onClick={handleSubmitDetails}>View details</Dropdown.Item>
+            {hideFromList ? (
+              <Dropdown.Item className="hide" onClick={e => hideFromList(e, id)}>
+                Hide from list
+              </Dropdown.Item>
+            ) : null}
+            <Dropdown.Item
+              onClick={favouriteId ? handleRemoveFromFavourites : handleAddToFavourites}
+            >
+              {favouriteId ? 'Remove from favourites' : 'Add to favourites'}
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
       </div>
     </div>

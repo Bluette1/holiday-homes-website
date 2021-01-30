@@ -68,7 +68,7 @@ const Header = ({
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand onClick={home}>Holiday-Homes</Navbar.Brand>
+      <Navbar.Brand className="d-lg-sm d-none" onClick={home}>Holiday-Homes</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -90,7 +90,7 @@ const Header = ({
           ? (
             <form onSubmit={search}>
               <input type="text" placeholder="Search by holiday home title" className="mr-sm-2" onChange={handleChange} />
-              <button className="btn btn-primary" type="submit">Search</button>
+              <button className="ml-2 btn btn-primary" type="submit" aria-labelledby="button-label"><i className="fa fa-search" aria-hidden="true" /></button>
             </form>
           )
           : null}
