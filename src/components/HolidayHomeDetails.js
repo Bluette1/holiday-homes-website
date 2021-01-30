@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../css/HolidayHomeDetails.css';
@@ -16,7 +18,7 @@ const HolidayHomeDetails = ({
   const [resRedirect, setRedirect] = useState(false);
   const [displayFavourite, setDisplayFavourite] = useState(favouriteId);
   const {
-    title, email, phone, owner, manager, description, rating, id,
+    rating, id, price, description,
   } = holidayHome;
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
@@ -61,7 +63,7 @@ const HolidayHomeDetails = ({
       <div className="col-12">
         {' '}
         <div
-          className="image-area"
+          className="image-area d-flex flex-column justify-content-end"
           style={{
             backgroundImage: `url(${url})`,
             backgroundRepeat: 'no-repeat',
@@ -69,35 +71,35 @@ const HolidayHomeDetails = ({
             backgroundSize: 'cover',
           }}
         >
-          <RatingComponent className="rating" rating={rating} />
+          <div className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
+            <RatingComponent className="rating" rating={rating} />
+            <h5 className="price">
+              $&nbsp;
+              {price}
+              &nbsp;
+              <br />
+              <small className="">per Month</small>
+            </h5>
+          </div>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 col-12">
           <div className="title-category">
-            <h4 className="title">{title}</h4>
-            <p className="owner">{owner}</p>
-            <p className="manager">{manager}</p>
-            <p>
-              Email:&nbsp;
-              {email}
-            </p>
-            <p>
-              Phone:&nbsp;
-              {phone}
-            </p>
             <p className="body-d">{description}</p>
           </div>
-          <div className="mt-5">
-            <button
-              type="button"
-              className="submit btn btn-primary mr-1"
-              onClick={handleRedirect}
+        </div>
+        <div className="dropdown-list col-12 d-flex justify-content-center pb-5 pt-3 mb-5 mt-2">
+
+          <DropdownButton id="dropdown-basic-button" title="More...">
+            <Dropdown.Item
+              onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites}
             >
-              BACK
-            </button>
-            <button type="button" onClick={displayFavourite ? handleRemoveFromFavourites : handleAddToFavourites} className="favourites btn btn-primary">
               {displayFavourite ? 'Remove from favourites' : 'Add to favourites'}
-            </button>
-          </div>
+            </Dropdown.Item>
+
+            <Dropdown.Item className="hide" onClick={handleRedirect}>
+              BACK
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
       </div>
     </div>
