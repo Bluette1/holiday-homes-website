@@ -44,7 +44,9 @@ To get a local copy up and running follow these simple example steps.
  ## Features
 - The user can access the functions of a simple holiday homes display application:
   - Display a list of available holiday homes
-  - Can view details about a given holiday home in the details page
+  - Can view details about a selected holiday home in the details page
+  - Can add and remove favourite holiday homes
+  - Display a list of the logged in user's favourites
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

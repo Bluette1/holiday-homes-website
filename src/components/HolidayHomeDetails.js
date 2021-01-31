@@ -81,7 +81,7 @@ const HolidayHomeDetails = ({
           }}
         >
           <div className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-sm-between">
               <div>
                 <img src={photoUrl} alt="holiday home" style={{ borderRadius: '50%', margin: '5px' }} />
               </div>

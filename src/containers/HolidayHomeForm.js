@@ -75,7 +75,7 @@ class HolidayHomeForm extends React.Component {
       const { props: { user, createHolidayHome, showNewHolidayHome } } = this;
       axios.post(`${httpProtocol}://${host}:${port}/holiday_homes`, formData, { headers: { Authorization: `Bearer ${user.authentication_token}` } })
         .then(response => {
-          createHolidayHome(response.data);
+          createHolidayHome({ holiday_home: response.data, creator: user });
 
           this.setState({
             title: '',
