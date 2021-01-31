@@ -1,7 +1,3 @@
-h4 {
-  font-size: inherit;
-}
-
 .hidden {
   visibility: hidden;
 }
@@ -17,16 +13,13 @@ h4 {
 
 .image-area {
   height: 400px;
+  cursor: pointer;
 }
 
 .dropdown-list .btn.btn-primary {
   color: #000;
   background-color: #fff;
   border-color: #05045e;
-}
-
-.image-area {
-  cursor: pointer;
 }
 
 .imgContainer :hover {
@@ -36,4 +29,3 @@ h4 {
 .imgContainer :focus {
   border: solid 4px #d8f167;
 }
-
