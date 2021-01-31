@@ -87,7 +87,7 @@ class HolidayHomeForm extends React.Component {
             price: 0,
             image: null,
             imageSelected: false,
-          });
+          }).catch(err => console.log('API Err!!!!', err));
           document.getElementById('holiday-home-select').selectedIndex = 0;
 
           this.setState({
