@@ -18,7 +18,7 @@ const HolidayHomeDetails = ({
   const [resRedirect, setRedirect] = useState(false);
   const [displayFavourite, setDisplayFavourite] = useState(favouriteId);
   const {
-    rating, id, price, description,
+    rating, id, price, description, title,
   } = holidayHome;
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
@@ -61,7 +61,7 @@ const HolidayHomeDetails = ({
   return resRedirect ? <Redirect to="/" /> : (
     <div className="d-flex justify-content-center">
       <div className="col-12">
-        {' '}
+        <h4 className="title text-center">{title}</h4>
         <div
           className="image-area d-flex flex-column justify-content-end"
           style={{
@@ -83,7 +83,7 @@ const HolidayHomeDetails = ({
           </div>
         </div>
         <div className="mt-5 col-12">
-          <div className="title-category">
+          <div className="description">
             <p className="body-d">{description}</p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
@@ -15,13 +15,7 @@ const HolidayHomesList = ({
   holidayHomes, registerHolidayHomes, user,
   registerFavourites, favourites, showDetails, params,
 }) => {
-  const [renderRes, setRenderRes] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setRenderRes(true);
-    }, 1500);
-
-    // if (holidayHomes.length === 0 || params !== '') {
     axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?search_params=${params}`,
       { headers: { Authorization: `Bearer ${user.authentication_token}` } })
       .then(response => {
@@ -34,8 +28,6 @@ const HolidayHomesList = ({
             });
         }
       });
-    // }
-    return () => clearTimeout(timer);
   }, []);
 
   const removeThisHolidayHome = holidayHome => {
@@ -44,7 +36,7 @@ const HolidayHomesList = ({
 
   const isAFavourite = id => favourite(favourites, id);
 
-  const result = (
+  return (
     <div>
       {holidayHomes && holidayHomes.length ? (
         holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
@@ -56,10 +48,6 @@ const HolidayHomesList = ({
         </div>
       )}
     </div>
-  );
-
-  return (
-    <div>{renderRes ? (result) : null}</div>
   );
 };
 
