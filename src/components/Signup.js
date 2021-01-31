@@ -57,10 +57,10 @@ class Signup extends React.Component {
         <div className="wrapper row d-flex justify-content-center">
           <div className="col-12">
             <div className="signupForm p-5 m-5 d-flex flex-column align-items-center">
-              <h4 className="pb-4">
+              <h2 className="pb-4">
                 Signup&nbsp;&nbsp;
-                <sup className="h6 text-info"><small>Holiday Homes</small></sup>
-              </h4>
+                <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
+              </h2>
               <form className="form d-flex flex-column align-items-center" onSubmit={this.handleSignupSubmit}>
                 <label htmlFor="name">
                   <input
@@ -107,7 +107,7 @@ class Signup extends React.Component {
                   />
                 </label>
                 <br />
-                <label htmlFor="showPassword">
+                <label className="text-light" htmlFor="showPassword">
                   Show Password
                   <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'password')} />
                 </label>
@@ -124,7 +124,7 @@ class Signup extends React.Component {
                   />
                 </label>
                 <br />
-                <label htmlFor="showPasswordConfirmation">
+                <label className="text-light" htmlFor="showPasswordConfirmation">
                   Show Password Confirmation
                   <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
                 </label>

@@ -46,11 +46,11 @@ const Login = ({ login }) => {
       <div className="col-12">
         <div className="loginForm p-5 m-5 d-flex flex-column align-items-center">
           {err ? <p className="text-danger">Wrong email or password</p> : null }
-          <h4 className="pb-4">
+          <h2 className="pb-4">
             Sign in &nbsp;&nbsp;
             <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
-          </h4>
-          <p className="text-center">Hello there! Sign in and start managing your system</p>
+          </h2>
+          <p className="signin-mssge text-center">Hello there! Sign in and start managing your system</p>
           <form className="form d-flex flex-column align-items-center" onSubmit={handleLoginSubmit}>
             <label htmlFor="email">
               <input

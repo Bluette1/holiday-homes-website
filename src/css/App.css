@@ -32,7 +32,7 @@ input {
 }
 
 @media screen and (max-width: 390px) {
-  body {
+  .signin-mssge {
     font-size: 0.65rem;
   }
 }
