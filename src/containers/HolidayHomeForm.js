@@ -108,7 +108,7 @@ class HolidayHomeForm extends React.Component {
 
       const { props: { categories } } = this;
       return resRedirect ? <Redirect to="/" /> : (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center pl-3">
           <div className="pt-5 mt-5">
             <h4 className="form-title pb-4">ADD A NEW HOLIDAY HOME</h4>
 
@@ -187,7 +187,7 @@ class HolidayHomeForm extends React.Component {
                 {' '}
                 <br />
                 <select
-                  className="choose-category"
+                  className="choose-category mb-4 mt-4"
                   name="category"
                   value={category}
                   id="holiday-home-select"
@@ -204,7 +204,7 @@ class HolidayHomeForm extends React.Component {
                 <br />
                 <label htmlFor="imageUrl">
                   <input
-                    className="input-image-url"
+                    className="input-image-url mt-4 mb-4"
                     name="imageUrl"
                     onChange={this.handleChange}
                     value={imageUrl}
@@ -236,12 +236,12 @@ class HolidayHomeForm extends React.Component {
                     </p>
                   </span>
                 ) : (
-                  <p>Select a file to show details</p>
+                  <p>Select an image file</p>
                 )}
                 <br />
                 <button
                   type="submit"
-                  className="submit"
+                  className="submit bg-primary text-light"
                 >
                   ADD HOLIDAY HOME
                 </button>
@@ -250,7 +250,7 @@ class HolidayHomeForm extends React.Component {
 
             <button
               type="submit"
-              className="submit mt-5 ml-2"
+              className="submit mt-5 ml-2 bg-primary text-light"
               onClick={this.handleRedirect}
             >
               BACK

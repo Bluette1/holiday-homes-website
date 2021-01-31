@@ -11,6 +11,6 @@ button.search-btn {
 
 @media (max-width: 376px) {
   .search-input {
-    width: 150%;
+    width: 200%;
   }
 }
