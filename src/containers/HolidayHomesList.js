@@ -39,7 +39,7 @@ const HolidayHomesList = ({
   return (
     <div>
       {holidayHomes && holidayHomes.length ? (
-        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHome={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
+        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHomeObj={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
       ) : (
         <div>
           <p className="no-holiday-homes">

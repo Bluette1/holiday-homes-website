@@ -11,7 +11,14 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '', username: '', email: '', password: '', passwordConfirmation: '', loggedIn: false,
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+      loggedIn: false,
+      photo: null,
+      photoSelected: false,
     };
   }
 
@@ -21,19 +28,33 @@ class Signup extends React.Component {
     });
   }
 
+  handleChangePhoto = event => {
+    this.setState({
+      photo: event.target.files[0],
+      photoSelected: true,
+    });
+  };
+
     handleSignupSubmit = e => {
       e.preventDefault();
       const {
         state: {
-          name, username, email, password, passwordConfirmation,
+          name, username, email, password, passwordConfirmation, photo,
         },
       } = this;
+
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('username', username);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('passwordConfirmation', passwordConfirmation);
+      if (photo) {
+        formData.append('photo', photo);
+      }
       const { props: { login } } = this;
-      axios.post(`${httpProtocol}://${host}:${port}/api/sign_up`, {
-        user: {
-          name, username, email, password, password_confirmation: passwordConfirmation,
-        },
-      }).then(response => {
+      axios.post(`${httpProtocol}://${host}:${port}/api/sign_up`, formData).then(response => {
         login(response.data.data.user);
         this.setState({ loggedIn: true });
       });
@@ -42,7 +63,7 @@ class Signup extends React.Component {
     render() {
       const {
         state: {
-          name, username, email, password, passwordConfirmation, loggedIn,
+          name, username, email, password, passwordConfirmation, loggedIn, photo, photoSelected,
         },
       } = this;
       const toggleFn = (e, id) => {
@@ -128,6 +149,32 @@ class Signup extends React.Component {
                   Show Password Confirmation
                   <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
                 </label>
+                <br />
+                <input type="file" name="photo" onChange={this.handleChangePhoto} />
+                {' '}
+                {photoSelected ? (
+                  <span>
+                    <p>
+                      Filename:
+                      {photo.name}
+                    </p>
+                    <p>
+                      Filetype:
+                      {photo.type}
+                    </p>
+                    <p>
+                      Size in bytes:
+                      {photo.size}
+                    </p>
+                    <p>
+                      lastModifiedDate:
+                      {' '}
+                      {photo.lastModifiedDate.toLocaleDateString()}
+                    </p>
+                  </span>
+                ) : (
+                  <p>Select a photo file</p>
+                )}
                 <br />
 
                 <button

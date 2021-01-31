@@ -131,6 +131,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 - [Design idea](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App)) by [Alexey Savitskiy on Behance](https://www.behance.net/alexey_savitskiy).
 - [Microverse](https://www.microverse.org/)
+- [Freepik](https://www.freepik.com)
+- [Unsplash images](https://unsplash.com/)
 
 ## Show your support
 

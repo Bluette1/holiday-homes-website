@@ -13,13 +13,18 @@ import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
 
 const HolidayHomeDetails = ({
-  user, holidayHome, favouriteId, removeFromFavourites, addToFavorites, showDetails,
+  user, holidayHomeObj, favouriteId, removeFromFavourites, addToFavorites, showDetails,
 }) => {
+  const holidayHome = holidayHomeObj.holiday_home;
+
   const [resRedirect, setRedirect] = useState(false);
   const [displayFavourite, setDisplayFavourite] = useState(favouriteId);
   const {
     rating, id, price, description, title,
   } = holidayHome;
+  const { creator } = holidayHomeObj;
+  const { name } = creator;
+
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
   if (holidayHome.image_file_name) {
@@ -30,6 +35,10 @@ const HolidayHomeDetails = ({
     url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
   }
 
+  let photoUrl = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
+  if (creator.photo_file_name) {
+    photoUrl = `${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`;
+  }
   const handleAddToFavourites = e => {
     e.preventDefault();
     axios.post(`${httpProtocol}://${host}:${port}/holiday_homes/${id}/favourites`, {},
@@ -72,13 +81,21 @@ const HolidayHomeDetails = ({
           }}
         >
           <div className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
-            <RatingComponent className="rating" rating={rating} />
-            <h5 className="price">
+            <div className="d-flex justify-content-between">
+              <div>
+                <img src={photoUrl} alt="holiday home" style={{ borderRadius: '50%', margin: '5px' }} />
+              </div>
+              <div>
+                <p className="font-weight-bold">{name}</p>
+                <RatingComponent className="rating h6" rating={rating} />
+              </div>
+            </div>
+            <h5 className="price font-weight-bold">
               $&nbsp;
               {price}
               &nbsp;
               <br />
-              <small className="">per Month</small>
+              <small className="font-weight-bold">per Month</small>
             </h5>
           </div>
         </div>
@@ -108,7 +125,7 @@ const HolidayHomeDetails = ({
 
 HolidayHomeDetails.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
-  holidayHome: PropTypes.objectOf(PropTypes.any).isRequired,
+  holidayHomeObj: PropTypes.objectOf(PropTypes.any).isRequired,
   favouriteId: PropTypes.number,
   addToFavorites: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,

@@ -8,8 +8,10 @@ import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
 
 const HolidayHome = ({
-  holidayHome, favouriteId, showDetails,
+  holidayHomeObj, favouriteId, showDetails,
 }) => {
+  const holidayHome = holidayHomeObj.holiday_home;
+
   const {
     title, id,
     category, price, rating,
@@ -17,7 +19,7 @@ const HolidayHome = ({
 
   const handleSubmitDetails = e => {
     e.preventDefault();
-    showDetails(true, holidayHome, favouriteId);
+    showDetails(true, holidayHomeObj, favouriteId);
   };
 
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
@@ -58,7 +60,7 @@ const HolidayHome = ({
 };
 
 HolidayHome.propTypes = {
-  holidayHome: PropTypes.objectOf(PropTypes.any).isRequired,
+  holidayHomeObj: PropTypes.objectOf(PropTypes.any).isRequired,
   favouriteId: PropTypes.number,
   showDetails: PropTypes.func.isRequired,
 };

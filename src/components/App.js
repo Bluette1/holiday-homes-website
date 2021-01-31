@@ -73,7 +73,7 @@ const App = ({ user }) => {
           showUser={showUser}
           showSearchResults={showSearchResults}
         />
-        <Details holidayHome={holidayHome} favouriteId={favouriteId} showDetails={showDetails} />
+        <Details holidayHomeObj={holidayHome} favouriteId={favouriteId} showDetails={showDetails} />
       </div>
     );
   }

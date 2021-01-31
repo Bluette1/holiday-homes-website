@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { useStateIfMounted } from 'use-state-if-mounted';
+import {
+  cloudName,
+} from '../envVariables';
 
 const User = ({ user, showUser }) => {
   const [resRedirect, setRedirect] = useStateIfMounted(false);
@@ -9,24 +12,34 @@ const User = ({ user, showUser }) => {
     setRedirect(true);
     showUser(false);
   };
+  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
+
+  let url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
+  if (user.photo_file_name) {
+    url = `${baseImgUrl}${user.id}/thumb/${user.photo_file_name}`;
+  }
+
   return resRedirect ? <Redirect to="/" /> : (
     <div className="d-flex justify-content-center">
       <div className="pt-5 mt-5">
+        { url ? (
+          <img src={url} alt="" style={{ borderRadius: '50%', margin: '15px' }} />
+        ) : null}
         <div>
-          <h4>
+          <p>
             Name:&nbsp;
             {user.name}
-          </h4>
-          <h4>
+          </p>
+          <p>
             Username: &nbsp;
             {user.username}
-          </h4>
-          <h4>
+          </p>
+          <p>
             Email:&nbsp;
             {user.email}
-          </h4>
+          </p>
         </div>
-        <button type="submit" className="mt-5" onClick={handleRedirect}>Back</button>
+        <button type="submit" className="mt-5 bg-primary text-light" onClick={handleRedirect}>Back</button>
       </div>
     </div>
   );
