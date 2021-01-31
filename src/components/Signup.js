@@ -58,7 +58,7 @@ class Signup extends React.Component {
           <div className="col-12">
             <div className="signupForm p-5 m-5 d-flex flex-column align-items-center">
               <h2 className="pb-4">
-                Signup&nbsp;&nbsp;
+                Sign up&nbsp;&nbsp;
                 <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
               </h2>
               <form className="form d-flex flex-column align-items-center" onSubmit={this.handleSignupSubmit}>
@@ -134,7 +134,7 @@ class Signup extends React.Component {
                   type="submit"
                   className="submit btn btn-primary"
                 >
-                  Signup
+                  Sign up
                 </button>
               </form>
               <a href="/">

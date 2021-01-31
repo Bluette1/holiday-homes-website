@@ -6,11 +6,6 @@
   color: #ffa500;
 }
 
-.holidayHome-row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .image-area {
   height: 400px;
   cursor: pointer;

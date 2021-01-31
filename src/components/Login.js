@@ -85,7 +85,7 @@ const Login = ({ login }) => {
               type="submit"
               className="submit btn btn-primary pl-4 pr-4"
             >
-              Login
+              Sign in
             </button>
           </form>
           <a href="/signup">
