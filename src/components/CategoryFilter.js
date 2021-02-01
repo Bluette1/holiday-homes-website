@@ -19,8 +19,10 @@ const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
 
   const holidayHomeCategories = ['All', ...data];
   return (
-    <div className="category-filter">
+    <div>
       <select
+        className="category-filter"
+        data-testid="category-filter"
         onChange={e => handleFilterChange(e.target.value)}
       >
         <option>CATEGORIES</option>

@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the app 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="d-flex justify-content-between"
+        >
+          <nav
+            class="navbar navbar-expand-lg navbar-light"
+          >
+            <span
+              class="d-lg-sm d-none navbar-brand"
+            >
+              Holiday-Homes
+            </span>
+            <button
+              aria-controls="basic-navbar-nav"
+              aria-label="Toggle navigation"
+              class="navbar-toggler collapsed"
+              type="button"
+            >
+              <span
+                class="navbar-toggler-icon"
+              />
+            </button>
+            <div
+              class="navbar-collapse collapse"
+              id="basic-navbar-nav"
+            >
+              <div
+                class="mr-auto navbar-nav"
+              >
+                <a
+                  class="nav-link"
+                  href="#"
+                  role="button"
+                >
+                  Home
+                </a>
+                <a
+                  class="nav-link"
+                  href="#"
+                  role="button"
+                >
+                  <div>
+                    <select
+                      class="category-filter"
+                      data-testid="category-filter"
+                    >
+                      <option>
+                        CATEGORIES
+                      </option>
+                      <option
+                        value="All"
+                      >
+                        All
+                      </option>
+                    </select>
+                  </div>
+                </a>
+                <div
+                  class="dropdown nav-item"
+                >
+                  <a
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="dropdown-toggle nav-link"
+                    href="#"
+                    id="basic-nav-dropdown"
+                    role="button"
+                  >
+                    MaryS
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <nav>
+            <button
+              aria-controls="collapseExample"
+              aria-expanded="false"
+              class="m-2 p-2 pl-3 pr-3 search-btn"
+              data-target="#collapseTarget"
+              data-toggle="collapse"
+              type="button"
+            >
+              <span
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-search"
+                />
+              </span>
+            </button>
+            <div
+              class="collapse m-5 p-5"
+              id="collapseTarget"
+            >
+              <form>
+                <input
+                  class="mr-sm-2 search-input"
+                  placeholder="Search by title"
+                  type="text"
+                />
+                <button
+                  aria-labelledby="button-label"
+                  class="btn btn-primary mt-2"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          </nav>
+        </div>
+        <h3
+          class="mb-4 mt-2 text-center"
+        >
+          Holiday homes
+        </h3>
+        <div>
+          <div>
+            <p
+              class="no-holiday-homes"
+            >
+              No holiday homes were found
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="d-flex justify-content-between"
+      >
+        <nav
+          class="navbar navbar-expand-lg navbar-light"
+        >
+          <span
+            class="d-lg-sm d-none navbar-brand"
+          >
+            Holiday-Homes
+          </span>
+          <button
+            aria-controls="basic-navbar-nav"
+            aria-label="Toggle navigation"
+            class="navbar-toggler collapsed"
+            type="button"
+          >
+            <span
+              class="navbar-toggler-icon"
+            />
+          </button>
+          <div
+            class="navbar-collapse collapse"
+            id="basic-navbar-nav"
+          >
+            <div
+              class="mr-auto navbar-nav"
+            >
+              <a
+                class="nav-link"
+                href="#"
+                role="button"
+              >
+                Home
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                role="button"
+              >
+                <div>
+                  <select
+                    class="category-filter"
+                    data-testid="category-filter"
+                  >
+                    <option>
+                      CATEGORIES
+                    </option>
+                    <option
+                      value="All"
+                    >
+                      All
+                    </option>
+                  </select>
+                </div>
+              </a>
+              <div
+                class="dropdown nav-item"
+              >
+                <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  class="dropdown-toggle nav-link"
+                  href="#"
+                  id="basic-nav-dropdown"
+                  role="button"
+                >
+                  MaryS
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <nav>
+          <button
+            aria-controls="collapseExample"
+            aria-expanded="false"
+            class="m-2 p-2 pl-3 pr-3 search-btn"
+            data-target="#collapseTarget"
+            data-toggle="collapse"
+            type="button"
+          >
+            <span
+              class=""
+            >
+              <i
+                aria-hidden="true"
+                class="fa fa-search"
+              />
+            </span>
+          </button>
+          <div
+            class="collapse m-5 p-5"
+            id="collapseTarget"
+          >
+            <form>
+              <input
+                class="mr-sm-2 search-input"
+                placeholder="Search by title"
+                type="text"
+              />
+              <button
+                aria-labelledby="button-label"
+                class="btn btn-primary mt-2"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+      <h3
+        class="mb-4 mt-2 text-center"
+      >
+        Holiday homes
+      </h3>
+      <div>
+        <div>
+          <p
+            class="no-holiday-homes"
+          >
+            No holiday homes were found
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

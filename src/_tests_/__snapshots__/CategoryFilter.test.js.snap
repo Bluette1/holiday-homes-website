@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the app 1`] = `
+<select
+  class="category-filter"
+  data-testid="category-filter"
+>
+  <option>
+    CATEGORIES
+  </option>
+  <option
+    value="All"
+  >
+    All
+  </option>
+  <option
+    value="Cottage"
+  >
+    Cottage
+  </option>
+  <option
+    value="Mansion"
+  >
+    Mansion
+  </option>
+  <option
+    value="Lodge"
+  >
+    Lodge
+  </option>
+  <option
+    value="Country home"
+  >
+    Country home
+  </option>
+  <option
+    value="Chalet"
+  >
+    Chalet
+  </option>
+  <option
+    value="Log cabin"
+  >
+    Log cabin
+  </option>
+</select>
+`;

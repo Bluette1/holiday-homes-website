@@ -33,9 +33,10 @@ test('renders the app', async () => {
         return Promise.resolve({ data: [] });
     }
   });
-  render(<AppWithStore />);
+  const app = render(<AppWithStore />);
   await waitFor(() => {
     const holidayHomesTitle = screen.getByText(/Holiday-Homes/i);
     expect(holidayHomesTitle).toBeInTheDocument();
+    expect(app).toMatchSnapshot();
   });
 });
