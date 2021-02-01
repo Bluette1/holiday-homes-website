@@ -45,7 +45,7 @@ const HolidayHome = ({
             <p className="category pt-3">{category}</p>
           </div>
           <div>
-            <h5 className="price">
+            <h5 data-testid="price">
               $&nbsp;
               {price}
               &nbsp;
