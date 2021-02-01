@@ -12,7 +12,7 @@ const User = ({ user, showUser }) => {
     setRedirect(true);
     showUser(false);
   };
-  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
+  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1_1/`;
 
   let url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
   if (user.photo_file_name) {
