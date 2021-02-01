@@ -33,7 +33,7 @@ const categories = [
   'Chalet',
   'Log cabin',
 ];
-test('renders the app', async () => {
+test('renders the categoryFilter', async () => {
   axios.get.mockImplementation(url => {
     switch (url) {
       case `${httpProtocol}://${host}:${port}/categories`:
@@ -50,6 +50,7 @@ test('renders the app', async () => {
 
     const selectEl = screen.getByTestId('category-filter');
     expect(categoryFilter).toContainElement(selectEl);
+    expect(categoryFilter).toContainHTML('<option>CATEGORIES</option>');
 
     expect(selectEl).toContainHTML('<option>CATEGORIES</option>');
     expect(selectEl).toContainHTML('<option value="All">All</option>');
