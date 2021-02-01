@@ -137,7 +137,7 @@ const App = ({ user }) => {
         showUser={showUser}
         showSearchResults={showSearchResults}
       />
-      <h3 className="mb-4 mt-2 text-center">Holiay homes</h3>
+      <h3 className="mb-4 mt-2 text-center">Holiday homes</h3>
       <HolidayHomesList showDetails={showDetails} />
     </div>
   );
