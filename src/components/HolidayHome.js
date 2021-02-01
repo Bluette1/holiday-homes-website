@@ -22,7 +22,7 @@ const HolidayHome = ({
     showDetails(true, holidayHomeObj, favouriteId);
   };
 
-  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1_1/`;
+  const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
   if (holidayHome.image_url !== '') {
     url = holidayHome.image_url;
