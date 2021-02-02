@@ -145,7 +145,7 @@ describe("test that 'add/remove favorite' toggles as expected", () => {
           case `${httpProtocol}://${host}:${port}/holiday_homes/${holidayHome.id}/favourites`:
             return Promise.resolve({ data: { holiday_home: holidayHome, id: 'fvId' } });
           default:
-            return Promise.resolve({ data: [] });
+            return undefined;
         }
       });
       fireEvent.click(addToFavouritesItem);
@@ -159,7 +159,7 @@ describe("test that 'add/remove favorite' toggles as expected", () => {
         case `${httpProtocol}://${host}:${port}/favourites/fvId`:
           return Promise.resolve({ data: {} });
         default:
-          return Promise.resolve({ data: [] });
+          return undefined;
       }
     });
     fireEvent.click(removeFromFavouritesItem);

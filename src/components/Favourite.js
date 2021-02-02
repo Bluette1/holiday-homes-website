@@ -68,7 +68,7 @@ const Favourite = ({
             <p className="category pt-3">{category}</p>
           </div>
           <div>
-            <h5 className="price">
+            <h5 data-testid="price" className="price">
               $&nbsp;
               {price}
               &nbsp;

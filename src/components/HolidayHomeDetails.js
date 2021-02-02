@@ -54,10 +54,10 @@ const HolidayHomeDetails = ({
 
   const handleRemoveFromFavourites = e => {
     e.preventDefault();
-    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${favouriteId}`,
+    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${displayFavourite}`,
       { headers: { Authorization: `Bearer ${user.authentication_token}` } })
       .then(() => {
-        removeFromFavourites(favouriteId);
+        removeFromFavourites(displayFavourite);
         setDisplayFavourite(null);
       });
   };
