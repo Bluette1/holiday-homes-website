@@ -97,7 +97,7 @@ const Header = ({
           </button>
           <div id="collapseTarget" className="collapse m-5 p-5">
             <form onSubmit={search}>
-              <input type="text" placeholder="Search by title" className="mr-sm-2 search-input" onChange={handleChange} />
+              <input type="text" placeholder="Search by title" className="mr-sm-2 ml-sm-0 ml-n5 search-input" onChange={handleChange} />
               <button className="btn btn-primary mt-2" type="submit" aria-labelledby="button-label">Search</button>
             </form>
 

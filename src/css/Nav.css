@@ -9,7 +9,7 @@ button.search-btn {
   width: 100%;
 }
 
-@media (max-width: 376px) {
+@media (max-width: 426px) {
   .search-input {
     width: 200%;
   }
