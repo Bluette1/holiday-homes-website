@@ -161,6 +161,7 @@ class HolidayHomeForm extends React.Component {
                   {' '}
                   <br />
                   <input
+                    type="text-area"
                     className="description"
                     onChange={this.handleChange}
                     name="description"

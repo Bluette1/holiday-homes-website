@@ -25,7 +25,7 @@ const User = ({ user, showUser }) => {
         { url ? (
           <img src={url} alt="" style={{ borderRadius: '50%', margin: '15px' }} />
         ) : null}
-        <div>
+        <>
           <p>
             Name:&nbsp;
             {user.name}
@@ -38,7 +38,7 @@ const User = ({ user, showUser }) => {
             Email:&nbsp;
             {user.email}
           </p>
-        </div>
+        </>
         <button type="submit" className="mt-5 bg-primary text-light" onClick={handleRedirect}>Back</button>
       </div>
     </div>

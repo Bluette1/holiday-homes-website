@@ -37,17 +37,17 @@ const HolidayHomesList = ({
   const isAFavourite = id => favourite(favourites, id);
 
   return (
-    <div>
+    <>
       {holidayHomes && holidayHomes.length ? (
         holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHomeObj={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
       ) : (
-        <div>
+        <>
           <p className="no-holiday-homes">
             No holiday homes were found
           </p>
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 

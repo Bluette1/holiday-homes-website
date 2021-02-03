@@ -39,12 +39,12 @@ const HolidayHome = ({
           <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
         </div>
         <div className="col-12 d-flex justify-content-between pt-3">
-          <div className="title-category">
+          <article className="title-category">
             <h4 className="title">{title}</h4>
             <RatingComponent rating={rating} />
             <p className="category pt-3">{category}</p>
-          </div>
-          <div>
+          </article>
+          <article>
             <h5 data-testid="price">
               $&nbsp;
               {price}
@@ -52,7 +52,7 @@ const HolidayHome = ({
               <br />
               <small className="text-muted">per Month</small>
             </h5>
-          </div>
+          </article>
         </div>
       </div>
     </div>

@@ -11,14 +11,12 @@ const SearchResultsList = ({ params, showSearchResults, showDetails }) => {
     showSearchResults(false);
   };
   return resRedirect ? <Redirect to="/" /> : (
-    <div>
-      <div>
+    <>
+      <>
         <HolidayHomesList params={params} showDetails={showDetails} />
-      </div>
-
+      </>
       <button type="submit" className="mt-5" onClick={handleRedirect}>Back</button>
-
-    </div>
+    </>
 
   );
 };

@@ -79,7 +79,7 @@ class Signup extends React.Component {
       return loggedIn ? <Redirect to="/" /> : (
         <div className="wrapper row d-flex justify-content-center">
           <div className="col-12">
-            <div className="signupForm p-5 m-5 d-flex flex-column align-items-center">
+            <section className="signupForm p-5 m-5 d-flex flex-column align-items-center">
               {error !== '' ? <p className="text-danger p-5 m-5">{error}</p> : null }
               <h2 className="pb-4">
                 Sign up&nbsp;&nbsp;
@@ -192,7 +192,7 @@ class Signup extends React.Component {
                   Back
                 </button>
               </a>
-            </div>
+            </section>
           </div>
         </div>
       );

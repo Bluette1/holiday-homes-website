@@ -19,7 +19,7 @@ const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
 
   const holidayHomeCategories = ['All', ...data];
   return (
-    <div>
+    <>
       <select
         className="category-filter"
         data-testid="category-filter"
@@ -32,7 +32,7 @@ const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 };
 

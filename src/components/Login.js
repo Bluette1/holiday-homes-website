@@ -42,7 +42,7 @@ const Login = ({ login }) => {
   const loginDisplay = (
     <div className="wrapper row d-flex justify-content-center">
       <div className="col-12">
-        <div className="loginForm p-5 m-5 d-flex flex-column align-items-center">
+        <section className="loginForm p-5 m-5 d-flex flex-column align-items-center">
           {error !== '' ? <p className="text-danger">{error}</p> : null }
           <h2 className="pb-4">
             Sign in &nbsp;&nbsp;
@@ -91,7 +91,7 @@ const Login = ({ login }) => {
               Signup
             </button>
           </a>
-        </div>
+        </section>
       </div>
     </div>
   );

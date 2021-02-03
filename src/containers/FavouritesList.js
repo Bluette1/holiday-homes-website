@@ -8,17 +8,17 @@ import '../css/FavouritesList.css';
 const FavouritesList = ({
   favourites, showDetails,
 }) => (
-  <div>
+  <>
     {favourites && favourites.length ? (
       favourites.map(favourite => <Favourite key={`holidayHome-${uuid()}`} favourite={favourite} showDetails={showDetails} />)
     ) : (
-      <div>
+      <>
         <p className="no-holiday-homes">
           No favourites were found.
         </p>
-      </div>
+      </>
     )}
-  </div>
+  </>
 );
 
 FavouritesList.propTypes = {

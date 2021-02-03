@@ -62,11 +62,11 @@ const Favourite = ({
           <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
         </div>
         <div className="col-12 d-flex justify-content-between pt-3">
-          <div className="title-category">
+          <section className="title-category">
             <h4 className="title">{title}</h4>
             <RatingComponent rating={rating} />
             <p className="category pt-3">{category}</p>
-          </div>
+          </section>
           <div>
             <h5 data-testid="price" className="price">
               $&nbsp;

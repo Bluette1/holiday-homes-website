@@ -46,21 +46,19 @@ Object {
                   href="#"
                   role="button"
                 >
-                  <div>
-                    <select
-                      class="category-filter"
-                      data-testid="category-filter"
+                  <select
+                    class="category-filter"
+                    data-testid="category-filter"
+                  >
+                    <option>
+                      CATEGORIES
+                    </option>
+                    <option
+                      value="All"
                     >
-                      <option>
-                        CATEGORIES
-                      </option>
-                      <option
-                        value="All"
-                      >
-                        All
-                      </option>
-                    </select>
-                  </div>
+                      All
+                    </option>
+                  </select>
                 </a>
                 <div
                   class="dropdown nav-item"
@@ -123,15 +121,11 @@ Object {
         >
           Holiday homes
         </h3>
-        <div>
-          <div>
-            <p
-              class="no-holiday-homes"
-            >
-              No holiday homes were found
-            </p>
-          </div>
-        </div>
+        <p
+          class="no-holiday-homes"
+        >
+          No holiday homes were found
+        </p>
       </div>
     </div>
   </body>,
@@ -177,21 +171,19 @@ Object {
                 href="#"
                 role="button"
               >
-                <div>
-                  <select
-                    class="category-filter"
-                    data-testid="category-filter"
+                <select
+                  class="category-filter"
+                  data-testid="category-filter"
+                >
+                  <option>
+                    CATEGORIES
+                  </option>
+                  <option
+                    value="All"
                   >
-                    <option>
-                      CATEGORIES
-                    </option>
-                    <option
-                      value="All"
-                    >
-                      All
-                    </option>
-                  </select>
-                </div>
+                    All
+                  </option>
+                </select>
               </a>
               <div
                 class="dropdown nav-item"
@@ -254,15 +246,11 @@ Object {
       >
         Holiday homes
       </h3>
-      <div>
-        <div>
-          <p
-            class="no-holiday-homes"
-          >
-            No holiday homes were found
-          </p>
-        </div>
-      </div>
+      <p
+        class="no-holiday-homes"
+      >
+        No holiday homes were found
+      </p>
     </div>
   </div>,
   "debug": [Function],

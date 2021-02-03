@@ -70,7 +70,7 @@ const HolidayHomeDetails = ({
 
   return resRedirect ? <Redirect to="/" /> : (
     <div className="d-flex justify-content-center">
-      <div className="col-12">
+      <article className="col-12">
         <h4 className="title text-center">{title}</h4>
         <div
           className="image-area d-flex flex-column justify-content-end"
@@ -81,15 +81,15 @@ const HolidayHomeDetails = ({
             backgroundSize: 'cover',
           }}
         >
-          <div className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
+          <section className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
             <div className="d-sm-flex justify-content-sm-between">
               <div>
                 <img src={photoUrl} alt="holiday home" style={{ borderRadius: '50%', margin: '5px' }} />
               </div>
-              <div>
+              <>
                 <p className="font-weight-bold">{name}</p>
                 <RatingComponent className="rating h6" rating={rating} />
-              </div>
+              </>
             </div>
             <h5 className="price font-weight-bold" data-testid="price">
               $&nbsp;
@@ -98,7 +98,7 @@ const HolidayHomeDetails = ({
               <br />
               <small className="font-weight-bold">per Month</small>
             </h5>
-          </div>
+          </section>
         </div>
         <div className="mt-5 col-12">
           <div className="description">
@@ -119,7 +119,7 @@ const HolidayHomeDetails = ({
             </Dropdown.Item>
           </DropdownButton>
         </div>
-      </div>
+      </article>
     </div>
   );
 };
