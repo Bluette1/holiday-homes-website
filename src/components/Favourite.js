@@ -43,7 +43,7 @@ const Favourite = ({
 
   const handleSubmitDetails = e => {
     e.preventDefault();
-    showDetails(true, holidayHome, id);
+    showDetails(true, favourite, id);
   };
 
   const handleRemoveFromFavourites = e => {
