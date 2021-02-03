@@ -21,9 +21,11 @@ class HolidayHomeForm extends React.Component {
       resRedirect: false,
       rating: 0,
       price: 0,
+      description: '',
       imageUrl: '',
       image: null,
       imageSelected: false,
+      error: '',
     };
     this.handleChangeImage = this.handleChangeImage.bind(this);
   }
@@ -54,7 +56,7 @@ class HolidayHomeForm extends React.Component {
       e.preventDefault();
       const {
         state: {
-          title, category, address, email, phone, rating, price, image, imageUrl,
+          title, category, address, email, phone, rating, price, image, imageUrl, description,
         },
       } = this;
 
@@ -68,6 +70,7 @@ class HolidayHomeForm extends React.Component {
       formData.append('phone', phone);
       formData.append('rating', rating);
       formData.append('price', price);
+      formData.append('description', description);
       if (image) {
         formData.append('image', image);
       }
@@ -83,6 +86,7 @@ class HolidayHomeForm extends React.Component {
             address: '',
             email: '',
             phone: '',
+            description: '',
             rating: 0,
             price: 0,
             image: null,
@@ -95,14 +99,14 @@ class HolidayHomeForm extends React.Component {
           });
 
           showNewHolidayHome(false);
-        });
+        }).catch(errorRes => { this.setState({ error: JSON.stringify(errorRes) }); });
     };
 
     render() {
       const {
         state: {
           address, email, phone, category, title, image, imageUrl,
-          resRedirect, rating, price, imageSelected,
+          resRedirect, rating, price, imageSelected, error, description,
         },
       } = this;
 
@@ -110,8 +114,8 @@ class HolidayHomeForm extends React.Component {
       return resRedirect ? <Redirect to="/" /> : (
         <div className="d-flex justify-content-center pl-3">
           <div className="pt-5 mt-5">
+            {error !== '' ? <p className="text-danger p-5 m-5">{error}</p> : null }
             <h4 className="form-title pb-4">ADD A NEW HOLIDAY HOME</h4>
-
             <div className="d-flex justify-content-center">
               <form className="holiday-home-form" onSubmit={this.handleSubmit}>
                 <label htmlFor="title">
@@ -152,6 +156,18 @@ class HolidayHomeForm extends React.Component {
                   />
                 </label>
                 <br />
+                <label htmlFor="description">
+                  Description
+                  {' '}
+                  <br />
+                  <input
+                    className="description"
+                    onChange={this.handleChange}
+                    name="description"
+                    value={description}
+                    placeholder=""
+                  />
+                </label>
                 <br />
                 <label htmlFor="address">
                   <input
@@ -265,7 +281,6 @@ HolidayHomeForm.propTypes = {
   createHolidayHome: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // showFavourites: PropTypes.func.isRequired,
   showNewHolidayHome: PropTypes.func.isRequired,
 };
 export default connect(

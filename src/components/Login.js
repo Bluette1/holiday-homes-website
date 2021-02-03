@@ -12,7 +12,7 @@ const Login = ({ login }) => {
   const [email, setEmail] = useStateIfMounted('');
   const [password, setPassword] = useStateIfMounted('');
   const [loggedIn, setLoggedin] = useStateIfMounted(false);
-  const [err, setErr] = useStateIfMounted(false);
+  const [error, setErr] = useStateIfMounted('');
 
   const handleChange = ({ target: { value } }, setData) => {
     setData(value);
@@ -37,15 +37,13 @@ const Login = ({ login }) => {
     }).then(response => {
       login(response.data.data.user);
       setLoggedin(true);
-    }).catch(() => {
-      setErr(true);
-    });
+    }).catch(errorRes => setErr(JSON.stringify(errorRes)));
   };
   const loginDisplay = (
     <div className="wrapper row d-flex justify-content-center">
       <div className="col-12">
         <div className="loginForm p-5 m-5 d-flex flex-column align-items-center">
-          {err ? <p className="text-danger">Wrong email or password</p> : null }
+          {error !== '' ? <p className="text-danger">{error}</p> : null }
           <h2 className="pb-4">
             Sign in &nbsp;&nbsp;
             <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
