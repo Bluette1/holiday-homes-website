@@ -107,11 +107,44 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 
 ### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/
+advanced-configuration)
+
+### [Paperclip Cloudinary](https://github.com/GoGoCarl/paperclip-cloudinary) 
+#### Setup - Backend server
+  - Create a [Cloudinary](https://cloudinary.com/) account.
+  - Afterwards
+
+``Download your configuration YAML file and place it in your config directory. You can grab it here:
+
+   https://cloudinary.com/console/cloudinary.yml
+
+This will enable the Cloudinary gem to pick up your configuration automatically.```
+
+#### Setup - Frontend
+- Create a `.env.development` file in the root repository of the project and paste the following:
+```REACT_APP_REQUEST_OPTIONS_HOST=<host>
+REACT_APP_REQUEST_OPTIONS_PORT=<port>
+REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=<protocol>
+REACT_APP_CLOUD_NAME=<cloudName>
+ ```
+
+- Create a `.env.production` file in the root repository of the project and paste the following:
+```
+REACT_APP_REQUEST_OPTIONS_HOST=<host>
+REACT_APP_REQUEST_OPTIONS_PORT=<port>
+REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=<protocol>
+REACT_APP_CLOUD_NAME=<cloudName> 
+```
 
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- On Heroku, `cloudinary` can be configured using the Heroku cloudinary addon after installing it by running:
+ ```
+ heroku addons:create cloudinary
+ ```
+ See [Heroku addon for image management ](https://cloudinary.com/blog/heroku_add_on_for_image_management_in_the_cloud) for further information.
 
 ### `yarn build` fails to minify
 
