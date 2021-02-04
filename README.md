@@ -1,4 +1,52 @@
-# Getting Started with Create React App
+# holiday-homes-website
+
+A website application for viewing a list of available holiday homes
+
+![Linters](https://github.com/bluette1/holiday-homes-website/workflows/Linters/badge.svg)
+
+![Test with jest](https://github.com/Bluette1/holiday-homes-website/workflows/Test%20with%20jest/badge.svg)
+
+This project is a capstone project at the end of the Microverse curriculum. The project's specifications are listed [here](https://www.notion.so/Final-Capstone-Project-Find-Your-House-9a424802e7dc48eb8ef40e2ac09397d1#f6146dd819194da486ce5d60e69b3a93).
+
+## Project description
+A simple holiday homes website application built using React and Redux.
+
+## Screenshot
+![demo picture](./public/screenshot.png)
+
+
+## Built with
+- Javascript
+- Javascript design patterns
+- Node.js
+- React.js
+- Redux
+
+## Live Demo link
+[Holiday Homes Website on heroku](https://holiday-homes-website.herokuapp.com/)
+
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+## Prerequisites
+
+- Install node.
+
+## Set up
+
+- Clone the project.
+- Cd into the project directory.
+- Run ```yarn install``` or ```npm install``` to install dependencies in package.json.
+- Run ```yarn start``` or ```npm start```  and view the page on your localhost.
+
+
+ ## Features
+- The user can access the functions of a simple holiday homes display application:
+  - Display a list of available holiday homes
+  - Can view details about a selected holiday home in the details page
+  - Can add and remove favourite holiday homes
+  - Display a list of the logged in user's favourites
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -59,12 +107,72 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 
 ### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/
+advanced-configuration)
+
+### [Paperclip Cloudinary](https://github.com/GoGoCarl/paperclip-cloudinary) 
+#### Setup - Backend server
+  - Create a [Cloudinary](https://cloudinary.com/) account.
+  - Afterwards
+
+``Download your configuration YAML file and place it in your config directory. You can grab it here:
+
+   https://cloudinary.com/console/cloudinary.yml
+
+This will enable the Cloudinary gem to pick up your configuration automatically.```
+
+#### Setup - Frontend
+- Create a `.env.development` file in the root repository of the project and paste the following:
+```REACT_APP_REQUEST_OPTIONS_HOST=<host>
+REACT_APP_REQUEST_OPTIONS_PORT=<port>
+REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=<protocol>
+REACT_APP_CLOUD_NAME=<cloudName>
+ ```
+
+- Create a `.env.production` file in the root repository of the project and paste the following:
+```
+REACT_APP_REQUEST_OPTIONS_HOST=<host>
+REACT_APP_REQUEST_OPTIONS_PORT=<port>
+REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=<protocol>
+REACT_APP_CLOUD_NAME=<cloudName> 
+```
 
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- On Heroku, `cloudinary` can be configured using the Heroku cloudinary addon after installing it by running:
+ ```
+ heroku addons:create cloudinary
+ ```
+ See [Heroku addon for image management ](https://cloudinary.com/blog/heroku_add_on_for_image_management_in_the_cloud) for further information.
 
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Contributions
+
+ If you see something wrong or not working, please check [the issue tracker section](https://github.com/bluette1/holiday-homes-website/issues), if the problem you encountered is not already in the opened issues, then open a new issue by clicking on the `new issue` button.
+
+## Author
+
+👤 **Marylene Sawyer**
+- Github: [@Bluette1](https://github.com/Bluette1)
+- Twitter: [@MaryleneSawyer](https://twitter.com/MaryleneSawyer)
+- Linkedin: [Marylene Sawyer](https://www.linkedin.com/in/marylene-sawyer)
+
+## Acknowledgements
+
+- [Design idea](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App)) by [Alexey Savitskiy on Behance](https://www.behance.net/alexey_savitskiy).
+- [Microverse](https://www.microverse.org/)
+- [Freepik](https://www.freepik.com)
+- [Unsplash images](https://unsplash.com/)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.

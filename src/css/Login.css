@@ -1,0 +1,8 @@
+.wrapper {
+  height: 800px;
+  background-image: url('https://projectbucket-223.s3.us-east-2.amazonaws.com/george-bakos-OPsxLgO37Vs-unsplash.jpg');
+  background-position: 0% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}

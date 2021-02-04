@@ -1,0 +1,26 @@
+.hidden {
+  visibility: hidden;
+}
+
+.checked {
+  color: #ffa500;
+}
+
+.image-area {
+  height: 400px;
+  cursor: pointer;
+}
+
+.dropdown-list .btn.btn-primary {
+  color: #000;
+  background-color: #fff;
+  border-color: #05045e;
+}
+
+.imgContainer :hover {
+  border: solid 4px #ecbc1c;
+}
+
+.imgContainer :focus {
+  border: solid 4px #d8f167;
+}

@@ -1,0 +1,16 @@
+button.search-btn {
+  border-radius: 5px;
+  border: solid 1px #969393;
+  color: #969393;
+  background-color: #fff;
+}
+
+.search-input {
+  width: 100%;
+}
+
+@media (max-width: 426px) {
+  .search-input {
+    width: 200%;
+  }
+}
