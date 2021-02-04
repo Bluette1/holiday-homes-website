@@ -11,6 +11,7 @@ import {
 } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
+import urlExists from '../urlExists';
 
 const HolidayHomeDetails = ({
   user, holidayHomeObj, favouriteId, removeFromFavourites, addToFavorites, showDetails,
@@ -28,9 +29,9 @@ const HolidayHomeDetails = ({
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
 
-  if (holidayHome.image_url !== '') {
+  if (holidayHome.image_url !== '' && urlExists(holidayHome.image_url)) {
     url = holidayHome.image_url;
-  } else if (holidayHome.image_file_name) {
+  } else if (holidayHome.image_file_name && urlExists(`${baseImgUrl}${id}/original/${holidayHome.image_file_name}`)) {
     url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
   } else {
     url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
