@@ -38,7 +38,7 @@ const HolidayHomeDetails = ({
   }
 
   let photoUrl = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
-  if (creator.photo_file_name) {
+  if (creator.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`)) {
     photoUrl = `${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`;
   }
   const handleAddToFavourites = e => {
