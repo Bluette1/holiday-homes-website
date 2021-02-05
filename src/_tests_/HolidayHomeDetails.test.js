@@ -169,3 +169,30 @@ describe("test that 'add/remove favorite' toggles as expected", () => {
     });
   });
 });
+
+test('renders the holiday home details with default background image url if image url is invalid', async () => {
+  holidayHomeObj.holiday_home.image_url = 'ur';
+  axios.get.mockImplementation(url => {
+    switch (url) {
+      case `${httpProtocol}://${host}:${port}/holiday_homes?search_params=`:
+        return Promise.resolve({ data: [holidayHomeObj] });
+      default:
+        return Promise.resolve({ data: [] });
+    }
+  });
+  render(<HolidayHomeDetailsWithStore />);
+  await waitFor(() => {
+    const bgImg = document.querySelector('.image-area');
+    expect(bgImg).toBeTruthy();
+    expect(bgImg).toHaveStyle('backgroundImage: url(https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png)');
+    const img = screen.queryByAltText('holiday home');
+    expect(img).toHaveAttribute('src', 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png');
+    const rating = document.querySelectorAll('.fa.fa-star.checked');
+    expect(rating.length).toBe(5);
+    const price = screen.getByTestId('price');
+    expect(price).toHaveTextContent('$ 2000 per Month');
+    expect(img).toBeTruthy();
+    expect(screen.getByText('Mount Hall')).toBeInTheDocument();
+    expect(screen).toMatchSnapshot('lorem ipsum...');
+  });
+});
