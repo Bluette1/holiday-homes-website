@@ -5,9 +5,9 @@ name: Test with jest
 
 on:
   push:
-    branches: [ feature/add-holiday-homes-website ]
+    branches: [ feature/add-enhancements ]
   pull_request:
-    branches: [ feature/add-holiday-homes-website ]
+    branches: [ feature/add-enhancements ]
 
 jobs:
   build:
