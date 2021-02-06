@@ -1,7 +1,3 @@
-.image-area {
-  height: 560px;
-}
-
 .imgContainer :hover {
   border: solid 4px #ecbc1c;
 }
@@ -27,12 +23,6 @@ input:focus {
 
 .btn {
   border-radius: 20px;
-}
-
-@media (max-width: 576px) {
-  .image-area {
-    height: 330px;
-  }
 }
 
 @media screen and (max-width: 390px) {

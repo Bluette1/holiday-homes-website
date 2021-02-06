@@ -6,6 +6,7 @@ import {
 } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
+import urlExists from '../urlExists';
 
 const HolidayHome = ({
   holidayHomeObj, favouriteId, showDetails,
@@ -24,9 +25,9 @@ const HolidayHome = ({
 
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
-  if (holidayHome.image_url !== '') {
+  if (holidayHome.image_url !== '' && urlExists(holidayHome.image_url)) {
     url = holidayHome.image_url;
-  } else if (holidayHome.image_file_name) {
+  } else if (holidayHome.image_file_name && urlExists(`${baseImgUrl}${id}/original/${holidayHome.image_file_name}`)) {
     url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
   } else {
     url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
@@ -36,7 +37,7 @@ const HolidayHome = ({
     <div className="d-flex justify-content-center">
       <div className="col-12">
         <div className="imgContainer">
-          <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
+          <img className="image-area w-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
         </div>
         <div className="col-12 d-flex justify-content-between pt-3">
           <article className="title-category">

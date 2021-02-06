@@ -7,8 +7,8 @@
 }
 
 .image-area {
-  height: 400px;
   cursor: pointer;
+  height: 560px;
 }
 
 .dropdown-list .btn.btn-primary {
@@ -23,4 +23,10 @@
 
 .imgContainer :focus {
   border: solid 4px #d8f167;
+}
+
+@media (max-width: 769px) {
+  .image-area {
+    height: 100%;
+  }
 }

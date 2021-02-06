@@ -10,6 +10,7 @@ import configureStore, { history } from '../store';
 import { httpProtocol, host, port } from '../envVariables';
 
 jest.mock('axios');
+jest.mock('../urlExists');
 
 afterEach(cleanup);
 const holidayHomeOne = {

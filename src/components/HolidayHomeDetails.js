@@ -11,6 +11,7 @@ import {
 } from '../envVariables';
 import { removeFromFavourites, addToFavorites } from '../actions';
 import RatingComponent from './RatingComponent';
+import urlExists from '../urlExists';
 
 const HolidayHomeDetails = ({
   user, holidayHomeObj, favouriteId, removeFromFavourites, addToFavorites, showDetails,
@@ -28,16 +29,16 @@ const HolidayHomeDetails = ({
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
   let url;
 
-  if (holidayHome.image_url !== '') {
+  if (holidayHome.image_url !== '' && urlExists(holidayHome.image_url)) {
     url = holidayHome.image_url;
-  } else if (holidayHome.image_file_name) {
+  } else if (holidayHome.image_file_name && urlExists(`${baseImgUrl}${id}/original/${holidayHome.image_file_name}`)) {
     url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
   } else {
     url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
   }
 
   let photoUrl = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
-  if (creator.photo_file_name) {
+  if (creator.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`)) {
     photoUrl = `${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`;
   }
   const handleAddToFavourites = e => {
@@ -79,6 +80,7 @@ const HolidayHomeDetails = ({
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '50% 50%',
             backgroundSize: 'cover',
+            height: '140%',
           }}
         >
           <section className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
@@ -91,7 +93,7 @@ const HolidayHomeDetails = ({
                 <RatingComponent className="rating h6" rating={rating} />
               </>
             </div>
-            <h5 className="price font-weight-bold" data-testid="price">
+            <h5 className="price font-weight-bold pt-3 p-sm-0" data-testid="price">
               $&nbsp;
               {price}
               &nbsp;

@@ -4,6 +4,7 @@ import { useStateIfMounted } from 'use-state-if-mounted';
 import {
   cloudName,
 } from '../envVariables';
+import urlExists from '../urlExists';
 
 const User = ({ user, showUser }) => {
   const [resRedirect, setRedirect] = useStateIfMounted(false);
@@ -15,7 +16,7 @@ const User = ({ user, showUser }) => {
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
 
   let url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
-  if (user.photo_file_name) {
+  if (user.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${user.photo_file_name}`)) {
     url = `${baseImgUrl}${user.id}/thumb/${user.photo_file_name}`;
   }
 
