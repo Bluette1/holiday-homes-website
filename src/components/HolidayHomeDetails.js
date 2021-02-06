@@ -80,7 +80,6 @@ const HolidayHomeDetails = ({
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '50% 50%',
             backgroundSize: 'cover',
-            height: '140%',
           }}
         >
           <section className="text-light d-flex justify-content-between pl-3 pr-3 pb-5">
