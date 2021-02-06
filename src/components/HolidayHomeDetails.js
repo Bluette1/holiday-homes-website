@@ -92,7 +92,7 @@ const HolidayHomeDetails = ({
                 <RatingComponent className="rating h6" rating={rating} />
               </>
             </div>
-            <h5 className="price font-weight-bold" data-testid="price">
+            <h5 className="price font-weight-bold pt-3 p-sm-0" data-testid="price">
               $&nbsp;
               {price}
               &nbsp;

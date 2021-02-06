@@ -37,7 +37,7 @@ const HolidayHome = ({
     <div className="d-flex justify-content-center">
       <div className="col-12">
         <div className="imgContainer">
-          <img className="image-area w-100 h-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
+          <img className="image-area w-100" role="presentation" onKeyDown={handleSubmitDetails} onClick={handleSubmitDetails} src={url} alt="holiday home" />
         </div>
         <div className="col-12 d-flex justify-content-between pt-3">
           <article className="title-category">
