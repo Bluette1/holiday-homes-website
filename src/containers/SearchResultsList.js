@@ -15,7 +15,7 @@ const SearchResultsList = ({ params, showSearchResults, showDetails }) => {
       <>
         <HolidayHomesList params={params} showDetails={showDetails} />
       </>
-      <button type="submit" className="mt-5" onClick={handleRedirect}>Back</button>
+      <button type="submit" className="mt-5 ml-4" onClick={handleRedirect}>Back</button>
     </>
 
   );

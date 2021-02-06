@@ -6,7 +6,7 @@ import axios from 'axios';
 import { changeFilter, registerCategories } from '../actions/index';
 import { httpProtocol, host, port } from '../envVariables';
 
-const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
+const CategoryFilter = ({ currentFilter, handleFilterChange, registerCategories }) => {
   const [data, setData] = useStateIfMounted([]);
   useEffect(() => {
     axios.get(`${httpProtocol}://${host}:${port}/categories`)
@@ -25,7 +25,7 @@ const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
         data-testid="category-filter"
         onChange={e => handleFilterChange(e.target.value)}
       >
-        <option>CATEGORIES</option>
+        <option>{currentFilter === 'All' ? 'CATEGORIES' : currentFilter}</option>
         {holidayHomeCategories.map(option => (
           <option key={option} value={option}>
             {option}
@@ -39,8 +39,10 @@ const CategoryFilter = ({ handleFilterChange, registerCategories }) => {
 CategoryFilter.propTypes = {
   handleFilterChange: PropTypes.func.isRequired,
   registerCategories: PropTypes.func.isRequired,
+  currentFilter: PropTypes.string.isRequired,
 };
 
 export default connect(
-  null, { handleFilterChange: changeFilter, registerCategories },
+  state => ({ currentFilter: state.filter }),
+  { handleFilterChange: changeFilter, registerCategories },
 )(CategoryFilter);

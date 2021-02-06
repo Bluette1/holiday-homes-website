@@ -45,19 +45,32 @@ const App = ({ user }) => {
     setRenderUser(value);
   };
 
+  const NavBarWithProps = ({ showForm }) => (
+    <Navbar
+      showFavourites={showFavourites}
+      showNewHolidayHome={showNewHolidayHome}
+      showDetails={showDetails}
+      showUser={showUser}
+      showSearchResults={showSearchResults}
+      showForm={showForm}
+    />
+  );
+
+  NavBarWithProps.propTypes = {
+    showForm: PropTypes.bool,
+  };
+
+  NavBarWithProps.defaultProps = {
+    showForm: true,
+  };
+
   if (!user) {
     return <Redirect to="/login" />;
   }
   if (renderFavourites) {
     return (
       <div>
-        <Navbar
-          showFavourites={showFavourites}
-          showNewHolidayHome={showNewHolidayHome}
-          showDetails={showDetails}
-          showUser={showUser}
-          showSearchResults={showSearchResults}
-        />
+        <NavBarWithProps />
         <FavouritesList showFavourites={showFavourites} showDetails={showDetails} />
       </div>
     );
@@ -66,13 +79,7 @@ const App = ({ user }) => {
   if (renderDetails) {
     return (
       <div>
-        <Navbar
-          showFavourites={showFavourites}
-          showNewHolidayHome={showNewHolidayHome}
-          showDetails={showDetails}
-          showUser={showUser}
-          showSearchResults={showSearchResults}
-        />
+        <NavBarWithProps />
         <Details holidayHomeObj={holidayHome} favouriteId={favouriteId} showDetails={showDetails} />
       </div>
     );
@@ -81,13 +88,7 @@ const App = ({ user }) => {
   if (renderNewForm) {
     return (
       <div>
-        <Navbar
-          showFavourites={showFavourites}
-          showNewHolidayHome={showNewHolidayHome}
-          showDetails={showDetails}
-          showUser={showUser}
-          showSearchResults={showSearchResults}
-        />
+        <NavBarWithProps />
         <HolidayHomeForm showFavourites={showFavourites} showNewHolidayHome={showNewHolidayHome} />
       </div>
     );
@@ -96,13 +97,7 @@ const App = ({ user }) => {
   if (renderUser) {
     return (
       <div>
-        <Navbar
-          showFavourites={showFavourites}
-          showNewHolidayHome={showNewHolidayHome}
-          showDetails={showDetails}
-          showUser={showUser}
-          showSearchResults={showSearchResults}
-        />
+        <NavBarWithProps />
         <User user={user} showUser={showUser} />
       </div>
     );
@@ -111,14 +106,8 @@ const App = ({ user }) => {
   if (renderSearchResults.show) {
     return (
       <div>
-        <Navbar
-          showFavourites={showFavourites}
-          showNewHolidayHome={showNewHolidayHome}
-          showDetails={showDetails}
-          showUser={showUser}
-          showSearchResults={showSearchResults}
-          showForm={false}
-        />
+        <NavBarWithProps showForm={false} />
+
         <SearchResultsList
           params={renderSearchResults.params}
           showSearchResults={showSearchResults}
@@ -130,13 +119,7 @@ const App = ({ user }) => {
 
   return (
     <div>
-      <Navbar
-        showFavourites={showFavourites}
-        showNewHolidayHome={showNewHolidayHome}
-        showDetails={showDetails}
-        showUser={showUser}
-        showSearchResults={showSearchResults}
-      />
+      <NavBarWithProps />
       <h3 className="mb-4 mt-2 text-center">Holiday homes</h3>
       <HolidayHomesList showDetails={showDetails} />
     </div>
