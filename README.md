@@ -40,6 +40,7 @@ To get a local copy up and running follow these simple example steps.
 - Run ```yarn install``` or ```npm install``` to install dependencies in package.json.
 - Run ```yarn start``` or ```npm start```  and view the page on your localhost.
 
+- Clone and run the [backend server](https://github.com/Bluette1/horticultural-exchange-api) locally.
 
  ## Features
 - The user can access the functions of a simple holiday homes display application:
