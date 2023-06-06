@@ -15,7 +15,7 @@ const User = ({ user, showUser }) => {
   };
   const baseImgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1611749658/`;
 
-  let url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
+  let url = 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png';
   if (user.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${user.photo_file_name}`)) {
     url = `${baseImgUrl}${user.id}/thumb/${user.photo_file_name}`;
   }

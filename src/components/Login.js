@@ -35,7 +35,12 @@ const Login = ({ login }) => {
             email, password,
           },
     }).then(response => {
-      login(response.data.data.user);
+      const {
+        data: { user },
+      } = response.data;
+      localStorage.setItem('user', JSON.stringify(user));
+
+      login(user);
       setLoggedin(true);
     }).catch(errorRes => setErr(JSON.stringify(errorRes)));
   };
@@ -48,7 +53,7 @@ const Login = ({ login }) => {
             Sign in &nbsp;&nbsp;
             <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
           </h2>
-          <p className="signin-mssge text-center">Hello there! Sign in and start managing your system</p>
+          <p className="signin-mssge text-center text-light">Hello there! Sign in and start managing your system</p>
           <form className="form d-flex flex-column align-items-center" onSubmit={handleLoginSubmit}>
             <label htmlFor="email">
               <input
@@ -74,7 +79,7 @@ const Login = ({ login }) => {
             </label>
             {' '}
             <br />
-            <label htmlFor="show-password">
+            <label htmlFor="show-password" className="text-light">
               Show Password
               <input className="m-1" type="checkbox" onClick={toggleFn} />
             </label>

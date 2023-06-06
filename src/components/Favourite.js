@@ -33,7 +33,7 @@ const Favourite = ({
   } else if (holidayHome.image_file_name && urlExists(`${baseImgUrl}${holidayHomeId}/original/${holidayHome.image_file_name}`)) {
     url = `${baseImgUrl}${holidayHomeId}/original/${holidayHome.image_file_name}`;
   } else {
-    url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
+    url = 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/home_image.png';
   }
 
   const handleRedirect = e => {

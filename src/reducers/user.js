@@ -1,6 +1,6 @@
 import { LOGIN, LOGOUT } from '../actions/actionTypes';
 
-const initialState = null;
+const initialState = JSON.parse(localStorage.getItem('user'));
 
 const user = (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +9,7 @@ const user = (state = initialState, action) => {
     }
 
     case LOGOUT: {
+      localStorage.removeItem('user');
       return null;
     }
 

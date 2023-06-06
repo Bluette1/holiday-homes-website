@@ -153,10 +153,10 @@ class Signup extends React.Component {
                   <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
                 </label>
                 <br />
-                <input className="text-light" type="file" name="photo" onChange={this.handleChangePhoto} />
+                <input className="text-blue" type="file" name="photo" onChange={this.handleChangePhoto} />
                 {' '}
                 {photoSelected ? (
-                  <span className="text-light">
+                  <span className="text-blue">
                     <p>
                       Filename:
                       {photo.name}
@@ -176,7 +176,7 @@ class Signup extends React.Component {
                     </p>
                   </span>
                 ) : (
-                  <p className="text-light">Select a photo file</p>
+                  <p className="text-light">Select your profile photo</p>
                 )}
                 <br />
 
