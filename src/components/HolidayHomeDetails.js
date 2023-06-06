@@ -34,10 +34,10 @@ const HolidayHomeDetails = ({
   } else if (holidayHome.image_file_name && urlExists(`${baseImgUrl}${id}/original/${holidayHome.image_file_name}`)) {
     url = `${baseImgUrl}${id}/original/${holidayHome.image_file_name}`;
   } else {
-    url = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png';
+    url = 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/home_image.png';
   }
 
-  let photoUrl = 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png';
+  let photoUrl = 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png';
   if (creator.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`)) {
     photoUrl = `${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`;
   }

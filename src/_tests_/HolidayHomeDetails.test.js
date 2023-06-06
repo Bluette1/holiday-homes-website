@@ -60,7 +60,7 @@ test('renders the holiday home details', async () => {
   render(<HolidayHomeDetailsWithStore />);
   await waitFor(() => {
     const img = screen.queryByAltText('holiday home');
-    expect(img).toHaveAttribute('src', 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png');
+    expect(img).toHaveAttribute('src', 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png');
     const rating = document.querySelectorAll('.fa.fa-star.checked');
     expect(rating.length).toBe(5);
     const price = screen.getByTestId('price');
@@ -96,7 +96,7 @@ test('renders the holiday home details - user can add favourites ', async () => 
     expect(bgImg).toBeTruthy();
     expect(bgImg).toHaveStyle('backgroundImage: url(url)');
     const img = screen.queryByAltText('holiday home');
-    expect(img).toHaveAttribute('src', 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png');
+    expect(img).toHaveAttribute('src', 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png');
     const rating = document.querySelectorAll('.fa.fa-star.checked');
     expect(rating.length).toBe(5);
     const price = screen.getByTestId('price');
@@ -129,7 +129,7 @@ describe("test that 'add/remove favorite' toggles as expected", () => {
       expect(bgImg).toBeTruthy();
       expect(bgImg).toHaveStyle('backgroundImage: url(url)');
       const img = screen.queryByAltText('holiday home');
-      expect(img).toHaveAttribute('src', 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png');
+      expect(img).toHaveAttribute('src', 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png');
       const rating = document.querySelectorAll('.fa.fa-star.checked');
       expect(rating.length).toBe(5);
       const price = screen.getByTestId('price');
@@ -184,9 +184,9 @@ test('renders the holiday home details with default background image url if imag
   await waitFor(() => {
     const bgImg = document.querySelector('.image-area');
     expect(bgImg).toBeTruthy();
-    expect(bgImg).toHaveStyle('backgroundImage: url(https://projectbucket-223.s3.us-east-2.amazonaws.com/home_image.png)');
+    expect(bgImg).toHaveStyle('backgroundImage: url(https://holiday-homes-project.s3.eu-north-1.amazonaws.com/home_image.png)');
     const img = screen.queryByAltText('holiday home');
-    expect(img).toHaveAttribute('src', 'https://projectbucket-223.s3.us-east-2.amazonaws.com/user.png');
+    expect(img).toHaveAttribute('src', 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png');
     const rating = document.querySelectorAll('.fa.fa-star.checked');
     expect(rating.length).toBe(5);
     const price = screen.getByTestId('price');
