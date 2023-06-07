@@ -117,9 +117,6 @@ const App = ({ user }) => {
   }
 
   if (renderSearchResults.show) {
-    if (!user) {
-      return <Redirect to="/login" />;
-    }
     return (
       <div>
         <NavBarWithProps showForm={false} />

@@ -26,7 +26,6 @@ const HolidayHomesList = ({
     axios
       .get(
         `${httpProtocol}://${host}:${port}/holiday_homes?search_params=${params}`,
-        // { headers: { Authorization: `Bearer ${user.authentication_token}` } }
       )
       .then(response => {
         registerHolidayHomes(response.data.reverse());
