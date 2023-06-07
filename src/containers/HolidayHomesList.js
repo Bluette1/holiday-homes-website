@@ -6,23 +6,35 @@ import axios from 'axios';
 import HolidayHome from '../components/HolidayHome';
 import { filteredHolidayHomes, favourite } from '../selectors';
 import {
-  registerHolidayHomes, removeHolidayHome, registerFavourites,
+  registerHolidayHomes,
+  removeHolidayHome,
+  registerFavourites,
 } from '../actions/index';
 import '../css/HolidayHomesList.css';
 import { httpProtocol, host, port } from '../envVariables';
 
 const HolidayHomesList = ({
-  holidayHomes, registerHolidayHomes, user,
-  registerFavourites, favourites, showDetails, params,
+  holidayHomes,
+  registerHolidayHomes,
+  user,
+  registerFavourites,
+  favourites,
+  showDetails,
+  params,
 }) => {
   useEffect(() => {
-    axios.get(`${httpProtocol}://${host}:${port}/holiday_homes?search_params=${params}`,
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+    axios
+      .get(
+        `${httpProtocol}://${host}:${port}/holiday_homes?search_params=${params}`,
+        // { headers: { Authorization: `Bearer ${user.authentication_token}` } }
+      )
       .then(response => {
         registerHolidayHomes(response.data.reverse());
-        if (favourites.length === 0) {
-          axios.get(`${httpProtocol}://${host}:${port}/favourites`,
-            { headers: { Authorization: `Bearer ${user.authentication_token}` } })
+        if (user && favourites.length === 0) {
+          axios
+            .get(`${httpProtocol}://${host}:${port}/favourites`, {
+              headers: { Authorization: `Bearer ${user.authentication_token}` },
+            })
             .then(responseFavourites => {
               registerFavourites(responseFavourites.data.reverse());
             });
@@ -39,12 +51,18 @@ const HolidayHomesList = ({
   return (
     <>
       {holidayHomes && holidayHomes.length ? (
-        holidayHomes.map(holidayHome => <HolidayHome key={`holidayHome-${uuid()}`} holidayHomeObj={holidayHome} removeHolidayHome={removeThisHolidayHome} favouriteId={isAFavourite(holidayHome.id)} showDetails={showDetails} />)
+        holidayHomes.map(holidayHome => (
+          <HolidayHome
+            key={`holidayHome-${uuid()}`}
+            holidayHomeObj={holidayHome}
+            removeHolidayHome={removeThisHolidayHome}
+            favouriteId={isAFavourite(holidayHome.id)}
+            showDetails={showDetails}
+          />
+        ))
       ) : (
         <>
-          <p className="no-holiday-homes">
-            No holiday homes were found
-          </p>
+          <p className="no-holiday-homes">No holiday homes were found</p>
         </>
       )}
     </>
@@ -76,11 +94,8 @@ HolidayHomesList.defaultProps = {
   params: '',
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    registerHolidayHomes,
-    removeHolidayHome,
-    registerFavourites,
-  },
-)(HolidayHomesList);
+export default connect(mapStateToProps, {
+  registerHolidayHomes,
+  removeHolidayHome,
+  registerFavourites,
+})(HolidayHomesList);

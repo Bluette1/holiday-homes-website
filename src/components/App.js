@@ -19,6 +19,7 @@ const App = ({ user }) => {
   const [favouriteId, setFavouriteId] = useState(null);
   const [renderNewForm, setRenderNewForm] = useState(false);
   const [renderUser, setRenderUser] = useState(false);
+  const [renderLogin, setRenderLogin] = useState(false);
   const [renderSearchResults, setRenderResults] = useState({ show: false, params: '' });
 
   const showFavourites = (value = true) => {
@@ -45,6 +46,10 @@ const App = ({ user }) => {
     setRenderUser(value);
   };
 
+  const showLogin = (value = true) => {
+    setRenderLogin(value);
+  };
+
   const NavBarWithProps = ({ showForm }) => (
     <Navbar
       showFavourites={showFavourites}
@@ -53,6 +58,7 @@ const App = ({ user }) => {
       showUser={showUser}
       showSearchResults={showSearchResults}
       showForm={showForm}
+      showLogin={showLogin}
     />
   );
 
@@ -64,10 +70,10 @@ const App = ({ user }) => {
     showForm: true,
   };
 
-  if (!user) {
-    return <Redirect to="/login" />;
-  }
   if (renderFavourites) {
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <NavBarWithProps />
@@ -77,6 +83,9 @@ const App = ({ user }) => {
   }
 
   if (renderDetails) {
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <NavBarWithProps />
@@ -86,6 +95,9 @@ const App = ({ user }) => {
   }
 
   if (renderNewForm) {
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <NavBarWithProps />
@@ -95,6 +107,9 @@ const App = ({ user }) => {
   }
 
   if (renderUser) {
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <NavBarWithProps />
@@ -103,7 +118,14 @@ const App = ({ user }) => {
     );
   }
 
+  if (renderLogin) {
+    return <Redirect to="/login" />;
+  }
+
   if (renderSearchResults.show) {
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <NavBarWithProps showForm={false} />
