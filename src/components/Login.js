@@ -48,13 +48,19 @@ const Login = ({ login }) => {
     <div className="wrapper row d-flex justify-content-center">
       <div className="col-12">
         <section className="loginForm p-5 m-5 d-flex flex-column align-items-center">
-          {error !== '' ? <p className="text-danger">{error}</p> : null }
+          {error !== '' ? <p className="text-danger">{error}</p> : null}
           <h2 className="pb-4">
             Sign in &nbsp;&nbsp;
-            <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
+            <a href="/">
+              <sup className="h6 d-none d-lg-inline-flex text-info">
+                <small>← Holiday Homes</small>
+              </sup>
+            </a>
           </h2>
-          <p className="signin-mssge text-center text-light">Hello there! Sign in and start managing your system</p>
-          <form className="form d-flex flex-column align-items-center" onSubmit={handleLoginSubmit}>
+          <form
+            className="form d-flex flex-column align-items-center"
+            onSubmit={handleLoginSubmit}
+          >
             <label htmlFor="email">
               <input
                 placeholder="Email"
@@ -65,7 +71,6 @@ const Login = ({ login }) => {
               />
             </label>
             <br />
-
             <label htmlFor="password">
               <input
                 placeholder="Password"
@@ -84,15 +89,15 @@ const Login = ({ login }) => {
               <input className="m-1" type="checkbox" onClick={toggleFn} />
             </label>
             <br />
-            <button
-              type="submit"
-              className="submit btn btn-primary pl-4 pr-4"
-            >
+            <button type="submit" className="submit btn btn-primary pl-4 pr-4">
               Sign in
             </button>
           </form>
           <a href="/signup">
-            <button type="submit" className="submit mt-5 btn btn-primary pl-4 pr-4">
+            <button
+              type="submit"
+              className="submit mt-5 btn btn-primary pl-4 pr-4"
+            >
               Signup
             </button>
           </a>

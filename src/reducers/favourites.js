@@ -10,9 +10,7 @@ const findAndDeleteFavorite = (favorites, id) => favorites.filter(favorite => fa
 export default function favourites(state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAVOURITES: {
-      return [
-        ..._.cloneDeep(state), ...action.holidayHomes,
-      ];
+      return action.holidayHomes;
     }
     case ADD_TO_FAVOURITES: {
       return [

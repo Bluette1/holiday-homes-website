@@ -5,11 +5,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CategoryFilter from './CategoryFilter';
-import { logout } from '../actions/index';
+import { logout, registerFavourites } from '../actions/index';
 import '../css/Nav.css';
 
 const Header = ({
   logout,
+  registerFavourites,
   user,
   showFavourites,
   showNewHolidayHome,
@@ -119,7 +120,16 @@ const Header = ({
               </NavDropdown.Item>
               <NavDropdown.Divider />
 
-              {user && <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>}
+              {user && (
+                <NavDropdown.Item
+                  onClick={() => {
+                    registerFavourites([]);
+                    logout();
+                  }}
+                >
+                  Logout
+                </NavDropdown.Item>
+              )}
             </NavDropdown>
 
             {!user && <Nav.Link onClick={login}>Login</Nav.Link>}
@@ -164,6 +174,7 @@ const Header = ({
 };
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
+  registerFavourites: PropTypes.func.isRequired,
   showFavourites: PropTypes.func.isRequired,
   showNewHolidayHome: PropTypes.func.isRequired,
   showDetails: PropTypes.func.isRequired,
@@ -178,4 +189,4 @@ Header.defaultProps = {
   showForm: true,
 };
 
-export default connect(state => ({ user: state.user }), { logout })(Header);
+export default connect(state => ({ user: state.user }), { logout, registerFavourites })(Header);

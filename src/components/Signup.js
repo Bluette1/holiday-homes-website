@@ -76,16 +76,27 @@ class Signup extends React.Component {
           psswdInput.type = 'password';
         }
       };
-      return loggedIn ? <Redirect to="/" /> : (
+      return loggedIn ? (
+        <Redirect to="/" />
+      ) : (
         <div className="wrapper row d-flex justify-content-center">
           <div className="col-12">
             <section className="signupForm p-5 m-5 d-flex flex-column align-items-center">
-              {error !== '' ? <p className="text-danger p-5 m-5">{error}</p> : null }
+              {error !== '' ? (
+                <p className="text-danger p-5 m-5">{error}</p>
+              ) : null}
               <h2 className="pb-4">
                 Sign up&nbsp;&nbsp;
-                <sup className="h6 d-none d-lg-inline-flex text-info"><small>Holiday Homes</small></sup>
+                <a href="/">
+                  <sup className="h6 d-none d-lg-inline-flex text-info">
+                    <small>← Holiday Homes</small>
+                  </sup>
+                </a>
               </h2>
-              <form className="form d-flex flex-column align-items-center" onSubmit={this.handleSignupSubmit}>
+              <form
+                className="form d-flex flex-column align-items-center"
+                onSubmit={this.handleSignupSubmit}
+              >
                 <label htmlFor="name">
                   <input
                     placeholder="Name"
@@ -118,7 +129,6 @@ class Signup extends React.Component {
                   />
                 </label>
                 <br />
-
                 <label htmlFor="password">
                   <input
                     placeholder="Password"
@@ -133,7 +143,11 @@ class Signup extends React.Component {
                 <br />
                 <label className="text-light" htmlFor="showPassword">
                   Show Password
-                  <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'password')} />
+                  <input
+                    className="m-1"
+                    type="checkbox"
+                    onClick={e => toggleFn(e, 'password')}
+                  />
                 </label>
                 <br />
                 <label htmlFor="passwordConfirmation">
@@ -148,12 +162,24 @@ class Signup extends React.Component {
                   />
                 </label>
                 <br />
-                <label className="text-light" htmlFor="showPasswordConfirmation">
+                <label
+                  className="text-light"
+                  htmlFor="showPasswordConfirmation"
+                >
                   Show Password Confirmation
-                  <input className="m-1" type="checkbox" onClick={e => toggleFn(e, 'passwordConfirmation')} />
+                  <input
+                    className="m-1"
+                    type="checkbox"
+                    onClick={e => toggleFn(e, 'passwordConfirmation')}
+                  />
                 </label>
                 <br />
-                <input className="text-blue" type="file" name="photo" onChange={this.handleChangePhoto} />
+                <input
+                  className="text-blue"
+                  type="file"
+                  name="photo"
+                  onChange={this.handleChangePhoto}
+                />
                 {' '}
                 {photoSelected ? (
                   <span className="text-blue">
@@ -179,16 +205,15 @@ class Signup extends React.Component {
                   <p className="text-light">Select your profile photo</p>
                 )}
                 <br />
-
-                <button
-                  type="submit"
-                  className="submit btn btn-primary"
-                >
+                <button type="submit" className="submit btn btn-primary">
                   Sign up
                 </button>
               </form>
               <a href="/">
-                <button type="submit" className="submit mt-5 btn btn-primary pl-4 pr-4">
+                <button
+                  type="submit"
+                  className="submit mt-5 btn btn-primary pl-4 pr-4"
+                >
                   Back
                 </button>
               </a>
