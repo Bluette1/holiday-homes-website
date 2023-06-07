@@ -71,9 +71,6 @@ const App = ({ user }) => {
   };
 
   if (renderFavourites) {
-    if (!user) {
-      return <Redirect to="/login" />;
-    }
     return (
       <div>
         <NavBarWithProps />
@@ -83,9 +80,6 @@ const App = ({ user }) => {
   }
 
   if (renderDetails) {
-    if (!user) {
-      return <Redirect to="/login" />;
-    }
     return (
       <div>
         <NavBarWithProps />
