@@ -29,7 +29,7 @@ const HolidayHomesList = ({
       )
       .then(response => {
         registerHolidayHomes(response.data.reverse());
-        if (user && favourites.length === 0) {
+        if (user) {
           axios
             .get(`${httpProtocol}://${host}:${port}/favourites`, {
               headers: { Authorization: `Bearer ${user.authentication_token}` },
