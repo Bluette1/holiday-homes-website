@@ -14,7 +14,7 @@ import RatingComponent from './RatingComponent';
 import urlExists from '../urlExists';
 
 const HolidayHomeDetails = ({
-  user, holidayHomeObj, favouriteId, removeFromFavourites, addToFavorites, showDetails,
+  user, holidayHomeObj, favouriteId, removeFromFavourites, addToFavorites, showDetails, favourites,
 }) => {
   const holidayHome = holidayHomeObj.holiday_home;
 
@@ -38,29 +38,51 @@ const HolidayHomeDetails = ({
   }
 
   let photoUrl = 'https://holiday-homes-project.s3.eu-north-1.amazonaws.com/profile-icon-png-910.png';
-  if (creator.photo_file_name && urlExists(`${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`)) {
-    photoUrl = `${baseImgUrl}${user.id}/thumb/${creator.photo_file_name}`;
+  if (creator.photo_file_name && urlExists(`${baseImgUrl}${creator.id}/thumb/${creator.photo_file_name}`)) {
+    photoUrl = `${baseImgUrl}${creator.id}/thumb/${creator.photo_file_name}`;
   }
   const handleAddToFavourites = e => {
     e.preventDefault();
-    axios.post(`${httpProtocol}://${host}:${port}/holiday_homes/${id}/favourites`, {},
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-      .then(response => {
-        const savedFavourite = response.data;
-        savedFavourite.holiday_home = holidayHome;
-        addToFavorites(savedFavourite);
-        setDisplayFavourite(savedFavourite.id);
-      });
+    if (user) {
+      axios
+        .post(
+          `${httpProtocol}://${host}:${port}/holiday_homes/${id}/favourites`,
+          {},
+          { headers: { Authorization: `Bearer ${user.authentication_token}` } },
+        )
+        .then(response => {
+          const savedFavourite = response.data;
+          savedFavourite.holiday_home = holidayHome;
+          addToFavorites(savedFavourite);
+          setDisplayFavourite(savedFavourite.id);
+        });
+    } else {
+      const randomId = favourites.length + 1;
+      const newFavourite = {
+        id: randomId,
+        holiday_home: holidayHome,
+      };
+      addToFavorites(newFavourite);
+      setDisplayFavourite(newFavourite.id);
+    }
   };
 
   const handleRemoveFromFavourites = e => {
     e.preventDefault();
-    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${displayFavourite}`,
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-      .then(() => {
-        removeFromFavourites(displayFavourite);
-        setDisplayFavourite(null);
-      });
+    if (user) {
+      axios
+        .delete(
+          `${httpProtocol}://${host}:${port}/favourites/${displayFavourite}`,
+          { headers: { Authorization: `Bearer ${user.authentication_token}` } },
+        )
+        .then(() => {
+          removeFromFavourites(displayFavourite);
+          setDisplayFavourite(null);
+        });
+    } else {
+      removeFromFavourites(displayFavourite);
+      setDisplayFavourite(null);
+    }
   };
 
   const handleRedirect = e => {
@@ -127,6 +149,7 @@ const HolidayHomeDetails = ({
 
 HolidayHomeDetails.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  favourites: PropTypes.arrayOf(PropTypes.any).isRequired,
   holidayHomeObj: PropTypes.objectOf(PropTypes.any).isRequired,
   favouriteId: PropTypes.number,
   addToFavorites: PropTypes.func.isRequired,
@@ -139,6 +162,6 @@ HolidayHomeDetails.defaultProps = {
 };
 
 export default connect(
-  state => ({ user: state.user }),
+  state => ({ user: state.user, favourites: state.favourites }),
   { removeFromFavourites, addToFavorites },
 )(HolidayHomeDetails);

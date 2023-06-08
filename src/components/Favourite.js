@@ -49,11 +49,17 @@ const Favourite = ({
 
   const handleRemoveFromFavourites = e => {
     e.preventDefault();
-    axios.delete(`${httpProtocol}://${host}:${port}/favourites/${id}`,
-      { headers: { Authorization: `Bearer ${user.authentication_token}` } })
-      .then(() => {
-        removeFromFavourites(favourite.id);
-      });
+    if (user) {
+      axios
+        .delete(`${httpProtocol}://${host}:${port}/favourites/${id}`, {
+          headers: { Authorization: `Bearer ${user.authentication_token}` },
+        })
+        .then(() => {
+          removeFromFavourites(favourite.id);
+        });
+    } else {
+      removeFromFavourites(favourite.id);
+    }
   };
 
   return (resRedirect ? <Redirect to="/" /> : (

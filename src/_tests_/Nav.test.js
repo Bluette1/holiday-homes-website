@@ -21,6 +21,7 @@ const showFavouritesSpy = jest.fn();
 const showNewHolidayHomeSpy = jest.fn();
 const showDetailsSpy = jest.fn();
 const showUserSpy = jest.fn();
+const showLoginSpy = jest.fn();
 const showSearchResultsSpy = jest.fn();
 const NavbarWithStore = () => (
   <Provider store={store}>
@@ -32,6 +33,7 @@ const NavbarWithStore = () => (
           showDetails={showDetailsSpy}
           showUser={showUserSpy}
           showSearchResults={showSearchResultsSpy}
+          showLogin={showLoginSpy}
         />
       </ConnectedRouter>
     </React.StrictMode>
