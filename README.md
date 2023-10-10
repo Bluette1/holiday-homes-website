@@ -23,7 +23,7 @@ A simple holiday homes website application built using React and Redux.
 - Redux
 
 ## Live Demo link
-[Holiday Homes Website on heroku](https://holiday-homes-website.herokuapp.com/)
+[Holiday Homes Website on heroku](https://holiday-homes-website.fly.dev/)
 
 ## Getting Started
 
